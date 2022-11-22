@@ -18,6 +18,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <style>
+label{ display:inline-block; width:100px; line-height:50px; }
 
     </style>
     <!--head config layout link-->
@@ -41,96 +42,46 @@
             </div>
 
             <div class="container text-center">
-                <div class="row justify-content-around">
-                    <div class="col-4" style="background-color: yellow;">
-                        <h5>원하는 질문 카테고리 선택</h5>
-                        <p>(다중 선택 가능)</p>
-
-                         <h4 class="fw-bold text-center mt-3"></h4>
-                            <form class="px-4" action="">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        데이터베이스
-                                    </label>
-                                </div>
-
-                                <!-- Checked checkbox -->
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
-                                    <label class="form-check-label" for="flexCheckDefault2">
-                                        자료구조
-                                    </label>
-                                </div>
-
-                                <!-- Checked checkbox -->
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" />
-                                    <label class="form-check-label" for="flexCheckDefault3">
-                                        알고리즘
-                                    </label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" />
-                                    <label class="form-check-label" for="flexCheckDefault3">
-                                        알고리즘
-                                    </label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" />
-                                    <label class="form-check-label" for="flexCheckDefault3">
-                                        프로그래밍
-                                    </label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" />
-                                    <label class="form-check-label" for="flexCheckDefault3">
-                                        네트워크
-                                    </label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" />
-                                    <label class="form-check-label" for="flexCheckDefault3">
-                                        운영체제
-                                    </label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" />
-                                    <label class="form-check-label" for="flexCheckDefault3">
-                                        인성
-                                    </label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" />
-                                    <label class="form-check-label" for="flexCheckDefault3">
-                                        돌발 질문
-                                    </label>
-                                </div>
-
-                                <button type="button" class="btn btn-primary">시작하기</button>
-                            </form>
-<!--                            <div class="card-footer text-end">-->
-<!--                                <button type="button" class="btn btn-primary">시작하기</button>-->
-<!--                            </div>-->
+                <div class="row justify-content-around" >
+                    <div class="col-4" style="border: 1px solid black; background-color:#F8F8F8   ; ">
+                        <h5 style=" padding-top:5%"><b>원하는 질문 카테고리 선택</b></h5>
+                        <hr>
+                        <!--div 시작-->
+                        <label><input type="checkbox">프로그래밍</label>
+                        <label><input type="checkbox">자료구조</label>
+                        <label><input type="checkbox">알고리즘</label>
+                        <label><input type="checkbox">DB이론</label>
+                        <label><input type="checkbox">네트워크</label>
+                        <label><input type="checkbox">운영체제</label>
+                        <label><input type="checkbox">인성질문</label>
+                        <label><input type="checkbox">돌발질문</label>
+                        <!--div 끝-->
+                        <p>   <button type="button" class="btn btn-primary">시작하기</button></p>
                     </div>
-                    <div class="col-4" style="background-color: green;">
-                        <h5>대답 못한 질문만 보아보기</h5>
 
-                        <h6> 기술 면접 : N건 </h6>
-                        <h6> 기술 면접 : N건 </h6>
-                        <h6> 기술 면접 : N건 </h6>
-                        <h6> 기술 면접 : N건 </h6>
+                    <!--div 시작-->
+                    <div class="col-4" style="border: 1px solid black; background-color:#F8F8F8   ;">
+                        <h5 style="padding-top:5%"><b>무응답 질문 모아보기</b></h5>
+                        <hr>
 
-                        <button type="button" class="btn btn-primary">시작하기</button>
+                        <span style="  display: inline-block; margin-top:2%;">프로그래밍 [ 0 ] 건</span>
+                        <span>자료구조 [ 0 ] 건</span>
+                        <span>알고리즘 [ 0 ] 건</span>
+                        <p style="padding-top:4%;"></p>
+                        <span>DB 이론 [ 0 ] 건</span>
+                        <span>네트워크 [ 0 ] 건</span>
+                        <span>운영체제 [ 0 ] 건</span>
+                        <p style="padding-top:4%;"></p>
+                        <span>인성질문 [ 0 ] 건</span>
+                        <span>돌발질문 [ 0 ] 건</span>
+
+                        <p style="margin-top:7%;"><button type="button" class="btn btn-primary">시작하기</button></p>
                     </div>
                 </div>
             </div>
+            <!--div 끝-->
+        </div>
+        </div>
         </div>
     </section>
 </main>
