@@ -14,4 +14,9 @@ public class testController {
     public String test2(){
         return "inner-page";
     }
+
+    @GetMapping("/freeboard")
+    public String freeboard() {
+        return "freeboard";
+    }
 }
