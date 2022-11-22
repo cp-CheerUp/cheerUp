@@ -10,4 +10,8 @@ public class InterviewController {
     public String interview_home(){
         return "user/interview/interview-home";
     }
+    
+    //interview 진행 중
+    
+    //interview 종료
 }
