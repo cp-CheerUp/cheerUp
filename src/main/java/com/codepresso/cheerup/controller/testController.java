@@ -9,4 +9,9 @@ public class testController {
     public String test(){
         return "index";
     }
+
+    @GetMapping("/inner-page")
+    public String test2(){
+        return "inner-page";
+    }
 }
