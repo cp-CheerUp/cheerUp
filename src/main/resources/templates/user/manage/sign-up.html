@@ -13,9 +13,10 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
     <style>
 
@@ -108,15 +109,15 @@
                 return false;
               };
 
-            if(education.value == ""){
-                alert("최종 학력을 선택해주세요.");
-                education.focus();
+            if(isMajor.value == ""){
+                alert("it 전공 여부를 선택해주세요.");
+                isMajor.focus();
                 return false;
             };
 
-            if(isMajor.value == ""){
+            if(education.value == ""){
                 alert("최종 학력을 선택해주세요.");
-                isMajor.focus();
+                education.focus();
                 return false;
             };
 
@@ -176,7 +177,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fas fa-check"></i> </span>
                                     </div>
-                                    <input class="form-control" placeholder="비밀번호 재확인" type="password">
+                                    <input class="form-control" id="password2" name="password2" placeholder="비밀번호 재확인" type="password">
                                 </div> <!-- form-group// -->
                                 <div class="form-group input-group">
                                     <div class="input-group-prepend">
@@ -196,7 +197,7 @@
                                         <span class="input-group-text"><i class="fas fa-code"></i> </span>
                                     </div>
                                     <select class="form-select" aria-label="Default select example" id="isMajor" name="isMajor">
-                                        <option selected=""> IT 관련 전공 여부 선택</option>
+                                        <option selected value =""> IT 관련 전공 여부 선택</option>
                                         <option value="Y">전공자</option>
                                         <option value="N">전공자 아님</option>
                                     </select>
@@ -207,7 +208,7 @@
                                             <span class="input-group-text"><i class="fas fa-graduation-cap"></i> </span>
                                         </div>
                                         <select class="form-select" aria-label="Default select example" id="education" name="education">
-                                            <option selected=""> 최종 학력 선택 </option>
+                                            <option selected value = "">최종 학력을 선택해주세요</option>
                                             <option value="H">고등학교 졸업</option>
                                             <option value="U">대학교 졸업(학사)</option>
                                             <option value="G">대학원 졸업(석사 이상)</option>

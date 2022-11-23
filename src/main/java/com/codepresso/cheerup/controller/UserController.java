@@ -33,7 +33,7 @@ public class UserController {
 
         if (result == 1) {
             model.addAttribute("message", "[회원가입성공] 로그인 후 서비스 이용하세요");
-            return "/login";
+            return "index";
         } else {
             model.addAttribute("message", "[회원가입실패] 가입 정보를 다시 확인하시기 바랍니다.");
             return "/signup";

@@ -1,7 +1,6 @@
 package com.codepresso.cheerup.dao;
 
 import com.codepresso.cheerup.vo.Member;
-import com.manage.foruser.vo.User;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

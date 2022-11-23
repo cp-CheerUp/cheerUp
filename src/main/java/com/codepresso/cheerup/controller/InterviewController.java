@@ -12,6 +12,14 @@ public class InterviewController {
     }
     
     //interview 진행 중
-    
+    @GetMapping("/interview")
+    public String interview(){
+        return "user/interview/interview";
+    }
+
     //interview 종료
+    @GetMapping("/interview-result")
+    public String result(){
+        return "user/interview/interview-result";
+    }
 }
