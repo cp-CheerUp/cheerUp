@@ -2,8 +2,7 @@ package com.codepresso.cheerup.service;
 
 import com.codepresso.cheerup.dao.UserMapper;
 import com.codepresso.cheerup.vo.Member;
-import com.manage.foruser.Mapper.UserMapper;
-import com.manage.foruser.vo.User;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
