@@ -13,6 +13,7 @@
 
     <!--head config layout link-->
     <th:block th:replace="fragments/config :: configFragment"></th:block>
+    <link href="/css/freeBoard/mainFreeBoard.css" rel="stylesheet">
 </head>
 
 
@@ -32,11 +33,10 @@
         <!-- nav -->
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto" href="#portfolio">자유게시판</a></li>
+                <li><a class="nav-link scrollto" href="/freeboard/main">자유게시판</a></li>
                 <li><a class="nav-link scrollto" href="#team">면접 연습</a></li>
-<!--                <li><a href="blog.html">Blog</a></li>-->
                 <li><a class="nav-link scrollto" href="#contact">채용 후기</a></li>
-                <li><a class="nav-link scrollto" href="feedback.html">피드백</a></li>
+                <li><a class="nav-link scrollto" href="feedback">피드백</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
@@ -59,13 +59,69 @@
 
         </div>
     </section>
-    <!-- End Breadcrumbs -->
 
     <section class="inner-page">
-        <div class="container">
-            <p>
-                자유게시판입니다~
-            </p>
+        <div class="container aos-init aos-animate" data-aos="fade-up">
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-4">
+                    <select style="height: 44px;" class="form-select" aria-label="Default select example">
+                        <option selected>카테고리</option>
+                        <option value="">일상</option>
+                        <option value="">자료</option>
+                    </select>
+                </div>
+<!--                <div class="col-8">-->
+<!--                    <div id="custom-search-input">-->
+<!--                        <div class="input-group col-md-12">-->
+<!--                            <input type="text" class="form-control" placeholder="내용검색" />-->
+<!--                            <span class="input-group-btn">-->
+<!--                                <button class="btn btn-dark" type="button">-->
+<!--                                    <i class="bi bi-search"></i>-->
+<!--                                </button>-->
+<!--                            </span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+            <div class="row">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">글 번호</th>
+                        <th scope="col">카테고리</th>
+                        <th scope="col">제목</th>
+                        <th scope="col">작성자</th>
+                        <th scope="col">작성일</th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr>
+                            <th scope="row">1</th>
+                            <th scope="col">카테고리</th>
+                            <th scope="col"><a href="/freeboard/view">제목</a></th>
+                            <th scope="col">작성자</th>
+                            <th scope="col">작성일</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <ul class="pagination">
+                        <li class="disabled"><a href="#">«</a></li>
+                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">»</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <button type="button" style="float: right;"class="btn btn-outline-dark" onclick="location.href='/freeboard/write';">글쓰기</button>
+                </div>
+            </div>
+
         </div>
     </section>
 
