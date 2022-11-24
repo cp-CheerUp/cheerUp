@@ -4,7 +4,7 @@
 <head>
     <!--head config layout link-->
     <th:block th:replace="fragments/config :: configFragment"></th:block>
-    <link href="/css/recruitReview/mainRecruilReview.css" rel="stylesheet">
+    <link href="/css/recruitReview/writeReview.css" rel="stylesheet">
 </head>
 <body>
 <main id="main">
@@ -24,81 +24,64 @@
 
     <section class="inner-page">
         <div class="container aos-init aos-animate" data-aos="fade-up">
-            <div class="row" style="margin-bottom: 20px;">
-                <div class="col-4">
-                    <select style="height: 44px;" class="form-select" aria-label="Default select example">
-                        <option value="9999" selected>카테고리</option>
-                        <option value="01">면접</option>
-                        <option value="02">코딩테스트</option>
-                        <option value="03">기타</option>
-                    </select>
-                </div>
-                <div class="col-8">
-                    <div id="custom-search-input">
-                        <div class="input-group col-md-12">
-                            <input type="text" class="form-control" placeholder="내용검색" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-dark" type="button">
-                                    <i class="bi bi-search"></i>
-                                </button>
-                            </span>
-                        </div>
+            <form action="" method = "post">
+                <div class="mb-3 row">
+                    <label for="title" class="col-sm-2 col-form-label">제목</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="title">
                     </div>
                 </div>
-            </div>
-            <div class="row">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col">카테고리</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">회사명</th>
-                    <th scope="col">작성일</th>
-                </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                <tr>
-                    <th scope="row">1</th>
-                    <th scope="col">카테고리</th>
-                    <th scope="col"><a href="/recruitReview/viewReview">제목</a></th>
-                    <th scope="col">회사명</th>
-                    <th scope="col">작성일</th>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <th scope="col">카테고리</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">회사명</th>
-                    <th scope="col">작성일</th>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <th scope="col">카테고리</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">회사명</th>
-                    <th scope="col">작성일</th>
-                </tr>
-                </tbody>
-            </table>
-            </div>
-            <div class="row">
-                <div class="container">
-                    <ul class="pagination">
-                        <li class="disabled"><a href="#">«</a></li>
-                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
+                <div class="mb-3 row">
+                    <label for="writeId" class="col-sm-2 col-form-label">작성자</label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="writeId" value="email@example.com">
+                    </div>
                 </div>
-                <div>
-                    <button type="button" style="float: right;"class="btn btn-outline-dark" onclick="location.href='/recruitReview/writeReview';">글쓰기</button>
+                <div class="mb-3">
+                    <label class="col-sm-2 col-form-label">카테고리</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="category" id="category1" value="01">
+                        <label class="form-check-label" for="category1">면접</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="category" id="category2" value="02">
+                        <label class="form-check-label" for="category2">코딩테스트</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="category" id="category3" value="03">
+                        <label class="form-check-label" for="category3">기타</label>
+                    </div>
                 </div>
-            </div>
-
+                <div class="mb-3 row">
+                    <label for="company" class="col-sm-2 col-form-label">회사명</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="company">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">내용</label>
+                    <textarea class="form-control" id="content" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">코딩테스트 난이도 선택</label>
+                    <div id="myform">
+                        <fieldset>
+                            <input type="radio" name="codingDiff" value="5" id="rate1"><label
+                                for="rate1">★</label>
+                            <input type="radio" name="codingDiff" value="4" id="rate2"><label
+                                for="rate2">★</label>
+                            <input type="radio" name="codingDiff" value="3" id="rate3"><label
+                                for="rate3">★</label>
+                            <input type="radio" name="codingDiff" value="2" id="rate4"><label
+                                for="rate4">★</label>
+                            <input type="radio" name="codingDiff" value="1" id="rate5"><label
+                                for="rate5">★</label>
+                        </fieldset>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-danger">취소</button>
+                <button type="button" class="btn btn-dark">작성</button>
+            </form>
         </div>
     </section>
 
@@ -188,7 +171,7 @@
 
 <!-- Template Main JS File -->
 <script src="/js/main.js"></script>
-<script src="/js/recruitReview/mainRecruitReview.js"></script>
+<script src="/js/recruitReview/writeReview.js"></script>
 </body>
 
 </html>

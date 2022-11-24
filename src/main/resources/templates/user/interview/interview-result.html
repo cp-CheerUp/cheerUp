@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Inner Page - FlexStart Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+        .center{
+            text-align: center;
+        }
+    </style>
+    <!--head config layout link-->
+    <th:block th:replace="fragments/config :: configFragment"></th:block>
+</head>
+
+
+<body>
+<!--header config layout link-->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<main id="main">
+
+    <section class="inner-page" style="margin-top:5%;">
+
+        <div class="container">
+                <div class="jumbotron"  style="text-align:center">
+                    <h1 class="display-4">면접 시뮬레이션 결과</h1>
+                </div>
+                    <div class="row d-flex justify-content-center ">
+                        <div class="col-md-6">
+                            <div class="span5">
+                                <table class="table table-condensed" style="margin-left: auto; margin-right: auto; text-align: center" >
+                                    <thead>
+                                    <tr>
+                                        <th>카테고리</th>
+                                        <th>질문</th>
+                                        <th>응답</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>프로그래밍</td>
+                                        <td>REST API란?</td>
+                                        <td><button type="button" class="btn btn-primary" disabled>통과</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>자료구조</td>
+                                        <td>Collection을 설명해보세요.</td>
+                                        <td><button type="button" class="btn btn-danger " disabled>무응답</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>돌발질문</td>
+                                        <td>우리가 당신을 뽑아야하는 이유를 알려주세요.</td>
+                                        <td><button type="button" class="btn btn-danger " disabled>무응답</button>
+                                    </tr>
+                                    <tr>
+                                        <td>인성질문</td>
+                                        <td>본인의 장/단점을 알려주세요.</td>
+                                        <td><button type="button" class="btn btn-primary" disabled>통과</button>
+                                    </tr>
+                                    <tr>
+                                        <td>데이터베이스</td>
+                                        <td>JOIN을 설명해주세요.</td>
+                                        <td><button type="button" class="btn btn-primary" disabled>통과</button>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!--버튼-->
+                            <div class="center" style="margin-top:10%;">
+                            <button type="button" class="btn btn-light" style="display :inline-block;">처음으로</button>
+                            <button type="button" class="btn btn-warning" style="display :inline-block;">무응답 질문 저장하기</button>
+                            </div>
+
+                    </div>
+            </div>
+            <!--div 끝-->
+    </section>
+</main>
+
+
+</body>
+</html>
