@@ -3,7 +3,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.codepresso.cheerup.dao.UserMapper">
 
-    <insert id="insertMember" parameterType="com.codepresso.cheerup.vo.Member">
+    <!-- 아이디 중복 체크 -->
+    <select id="idChk" resultType="int">
+        SELECT COUNT(*) FROM member
+        WHERE id = #{id}
+    </select>
+
+
+    <!-- 로그인 아이디 -->
+    <select id="findById" resultType="com.codepresso.cheerup.vo.User">
+        SELECT * FROM member
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insertMember" parameterType="com.codepresso.cheerup.vo.User">
         INSERT INTO member (id, password, name, phone, role, education, isMajor)
         VALUES (#{id}, #{password}, #{name}, #{phone}, #{role}, #{education}, #{isMajor})
     </insert>

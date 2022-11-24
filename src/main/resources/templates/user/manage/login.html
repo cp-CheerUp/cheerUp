@@ -45,6 +45,26 @@
 
     </style>
 
+    <script>
+        function form_check(){
+            var id = document.getElementById("id");
+            var password = document.getElementById("password");
+
+            if (id.value == "") {
+                alert("아이디를 입력하세요.");
+                id.focus();
+            };
+            if (password.value == "") {
+                alert("아이디를 입력하세요.");
+                password.focus();
+                return false;
+            };
+             document.getElementById('login_form').submit()
+
+        }
+
+    </script>
+
     <!--head config layout link-->
     <th:block th:replace="fragments/config :: configFragment"></th:block>
 </head>
@@ -65,19 +85,19 @@
                     <article class="card-body mx-auto" style="max-width: 400px;">
                         <h4 class="card-title mt-3 text-center"><b>로그인</b></h4>
                         <hr>
-
+                        <form id="login_form" name="login_form" method="post" th:action="@{/loginCheck}" accept-charset="UTF-8" >
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                             </div>
-                            <input name="" class="form-control" placeholder="ID" type="text">
+                            <input name="id" class="form-control" placeholder="ID" type="text">
                         </div> <!-- form-group// -->
 
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                             </div>
-                            <input class="form-control" placeholder="비밀번호" type="password">
+                            <input name="password" class="form-control" placeholder="비밀번호" type="password">
                         </div> <!-- form-group// -->
 
                         <div class="form-group">

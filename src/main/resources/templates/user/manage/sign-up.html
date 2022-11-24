@@ -158,7 +158,7 @@
                     <article class="card-body mx-auto" style="max-width: 400px;">
                         <h4 class="card-title  text-center"><b>회원가입</b></h4>
                         <hr>
-                        <form name="register_form" method="post" action="/register" accept-charset="UTF-8">
+                        <form id="register_form" name="register_form" method="post" th:action="@{/register}" accept-charset="UTF-8" >
 
                                 <div class="form-group input-group">
                                     <div class="input-group-prepend">
