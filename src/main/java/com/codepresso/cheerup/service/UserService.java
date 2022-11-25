@@ -29,7 +29,6 @@ public class UserService implements UserDetailsService {
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
-        user.setRole("USER");
 
         int result = userMapper.insertMember(user);
         System.out.println("여기 서비스인데요 회원가입 됐나요?**************"+"result값"+result);
