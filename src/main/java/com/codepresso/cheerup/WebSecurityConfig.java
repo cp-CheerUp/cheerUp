@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //Security 인증 무시 경로(front)
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**","/js/**","/vendor/**");
+        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**","/js/**","/vendor/**","/error","/favicon.ico");
         web.httpFirewall(defaultHttpFirewall());
 
     }
