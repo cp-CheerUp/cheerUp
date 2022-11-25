@@ -38,7 +38,11 @@ public class UserController {
 
     //로그인 페이지 이동
     @GetMapping("/login")
-    public String login(){
+    public String login(@RequestParam(value = "error", required = false)String error,
+                        @RequestParam(value = "exception", required = false)String exception,
+                        Model model) {
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
         return "user/manage/login";
     }
 
@@ -89,16 +93,6 @@ public class UserController {
             return "<script>alert('[안내] 로그인 실패 : 아이디와 비밀번호를 다시 확인해주세요.');location.replace('/login');</script>";
         }
     } */
-
-    //로그인 핸들러 처리
-    @GetMapping("/dologin")
-    public String login(@RequestParam(value = "error", required = false)String error,
-                        @RequestParam(value = "exception", required = false)String exception,
-                        Model model) {
-        model.addAttribute("error", error);
-        model.addAttribute("exception", exception);
-        return "/login";
-    }
 
 
     //로그아웃
