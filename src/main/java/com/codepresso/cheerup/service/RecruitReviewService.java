@@ -17,4 +17,6 @@ public class RecruitReviewService {
     public List<RecruitReview> getAllRecruitReview() {
         return recruitReviewMapper.getAllRecruitReview();
     }
+
+    public RecruitReview getOneRecruitReview(int boardNo) {return recruitReviewMapper.getOneRecruitReview(boardNo);}
 }

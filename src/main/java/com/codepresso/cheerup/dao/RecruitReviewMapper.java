@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface RecruitReviewMapper {
     List<RecruitReview> getAllRecruitReview();
+    RecruitReview getOneRecruitReview(int boardNo);
 }

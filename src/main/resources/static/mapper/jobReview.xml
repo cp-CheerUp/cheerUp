@@ -3,6 +3,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.codepresso.cheerup.dao.RecruitReviewMapper">
     <select id="getAllRecruitReview" resultType="RecruitReview">
-        SELECT * FROM recruitment_review
+        select * from (select @ROWNUM := @ROWNUM +1 as ROWNUM,
+	                    rr.*
+                       from recruitment_review rr, (select @ROWNUM := 0) TMP
+                       order by boardNo asc)sub
+        order by sub.ROWNUM desc
     </select>
+
+    <select id="getOneRecruitReview" parameterType="Integer" resultType="RecruitReview">
+        select * from recruitment_review where boardNo = #{boardNo}
+    </select>
+
 </mapper>
