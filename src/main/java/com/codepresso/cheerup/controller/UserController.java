@@ -51,10 +51,11 @@ public class UserController {
         return result;
     }
 
-    //로그인체크
+    /*로그인체크
     @ResponseBody
     @PostMapping("/loginCheck")
     public String loginCheck(String id, String password, HttpSession session){
+
 
         System.out.println("컨트롤러의 User"+id+"와"+password);
         String view_pw = password;
@@ -71,25 +72,34 @@ public class UserController {
             //password 확인
             String db_pw = passwordEncoder().encode(user.getPassword());
 
-            if(passwordEncoder().matches(view_pw,user.getPassword())){
-                //사용자 입력 password와 DB의 password 일치
-                session.setAttribute("id",id);
-                session.setAttribute("password",password);
-                session.setAttribute("role",user.getRole());
+                if(passwordEncoder().matches(view_pw,user.getPassword())){
+                    //사용자 입력 password와 DB의 password 일치
+                    session.setAttribute("id",id);
+                    session.setAttribute("password",password);
+                    session.setAttribute("role",user.getRole());
 
-                return "/main";
+                    return "<script>alert('[안내] 로그인 성공');location.replace('/interview');</script>";
 
-            }else{
-                //사용자 입력 password와 DB의 password 불일치
-                return "<script>alert('[안내] 로그인 실패 : 아이디와 비밀번호를 다시 확인해주세요.');location.replace('/login');</script>";
-            }
-
-
+                }else{
+                    //사용자 입력 password와 DB의 password 불일치
+                    return "<script>alert('[안내] 로그인 실패 : 아이디와 비밀번호를 다시 확인해주세요.');location.replace('/login');</script>";
+                }
         }else{
             //로그인 실패
             return "<script>alert('[안내] 로그인 실패 : 아이디와 비밀번호를 다시 확인해주세요.');location.replace('/login');</script>";
         }
+    } */
+
+    //로그인 핸들러 처리
+    @GetMapping("/dologin")
+    public String login(@RequestParam(value = "error", required = false)String error,
+                        @RequestParam(value = "exception", required = false)String exception,
+                        Model model) {
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
+        return "/login";
     }
+
 
     //로그아웃
     @GetMapping("/logout")
@@ -119,9 +129,9 @@ public class UserController {
         if (idCheck == 0) {
 
             //아이디 중복되지 않음 -> 회원 가입 처리
-            user.setRole("USER");
+            user.setRole("ROLE_USER");
             this.userService.insertMember(user);
-            return "<script>alert('[안내] 회원가입 완료!');location.replace('/');</script>";
+            return "<script>alert('[안내] 회원가입 완료!');location.replace('/login');</script>";
 
         } else {
             //아이디 중복 -> 회원가입 취소

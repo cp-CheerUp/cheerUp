@@ -49,6 +49,29 @@
 <!--header config layout link-->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
+
+<span>이름</span>
+<input type="text" th:placeholder="${session.id}"
+       th:value="${session.id}" name="id" id="id" readonly>
+<input type="text" th:placeholder="${session.role}"
+       th:value="${session.role}" name="role" id="role" readonly>
+
+modify - auth->
+<h1 sec:authorize="hasRole('USER')">Has user Role</h1>
+<h1 sec:authorize="hasRole('ADMIN')">Has admin Role</h1>
+<h1 sec:authorize="isAuthenticated()">authed</h1>
+<!--인증시 사용된 객체에 대한 정보-->
+<b>Authenticated DTO:</b>
+<div sec:authentication="principal"></div>
+<!--인증시 사용된 객체의 Username (ID)-->
+<b>Authenticated username:</b>
+<div sec:authentication="name"></div>
+<!--객체의 권한-->
+<b>Authenticated user role:</b>
+<div sec:authentication="principal.authorities"></div>
+<-modify - auth
+
+
 <main id="main">
 
     <section class="inner-page" style="margin-top:5%;">
