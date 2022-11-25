@@ -13,14 +13,31 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <style>
 label{ display:inline-block; width:100px; line-height:50px; }
-
     </style>
+
+    <script>
+        $(document).ready(function() {
+          $('#info_alert').click(function() {
+            swal({
+              title: "면접 시뮬레이션 이용 방법",
+              text: "1. 원하는 질문 카테고리 선택 : 선택한 질문 카테고리의 갯수대로 질문의 수를 자동 조절합니다(최소 10개 ~ 20개 이하)
+                     챌린저모드 : 각 질문 별로 제한 시간이 있어 더 실감나는 시뮬레이션이 가능합니다.
+                     2. 무응답 질문만 모아보기 : 면접 시뮬레이션 진행 후 결과페이지에서 무응답 질문을 저장하기를 하셨다면,
+                     무응답 질문들이 저장되어 모아볼 수 있습니다. 모아보기 진행 시 '응답했음'으로 체크했다면
+                     해당 질문은 무응답 질문 리스트에서 제외됩니다."
+            });
+          });
+        })
+</script>
+
+
     <!--head config layout link-->
     <th:block th:replace="fragments/config :: configFragment"></th:block>
 </head>
@@ -39,6 +56,8 @@ label{ display:inline-block; width:100px; line-height:50px; }
                 <h1 class="display-4">면접 시뮬레이션</h1>
                 <hr class="my-4">
                 <p class="lead">다양한 카테고리의 면접 질문들을 실전처럼 준비해보세요!</p>
+
+                <button style="float:right;" type="button" id="info_alert"> 이용방법</button>
             </div>
 
             <div class="container text-center">
