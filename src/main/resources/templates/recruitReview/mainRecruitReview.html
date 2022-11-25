@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <!--head config layout link-->
@@ -54,30 +54,20 @@
                     <th scope="col">카테고리</th>
                     <th scope="col">제목</th>
                     <th scope="col">회사명</th>
+                    <th scope="col">작성자</th>
                     <th scope="col">작성일</th>
                 </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                <tr>
-                    <th scope="row">1</th>
-                    <th scope="col">카테고리</th>
-                    <th scope="col"><a href="/recruitReview/viewReview">제목</a></th>
-                    <th scope="col">회사명</th>
-                    <th scope="col">작성일</th>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <th scope="col">카테고리</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">회사명</th>
-                    <th scope="col">작성일</th>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <th scope="col">카테고리</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">회사명</th>
-                    <th scope="col">작성일</th>
+                <tr th:each="list : ${reviewList}">
+                    <td th:text="${list.rowNum}"></td>
+                    <td th:if="${list.category == '01'}">면접</td>
+                    <td th:if="${list.category == '02'}">코딩테스트</td>
+                    <td th:if="${list.category == '03'}">기타</td>
+                    <td th:text="${list.title}" style="cursor: pointer;" th:onclick="|location.href='@{/recruitReview/viewReview(boardNo=${list.boardNo})}'|"></td>
+                    <td th:text="${list.company}"></td>
+                    <td th:text="${list.writeId}"></td>
+                    <td th:text="${list.regdate}"></td>
                 </tr>
                 </tbody>
             </table>
