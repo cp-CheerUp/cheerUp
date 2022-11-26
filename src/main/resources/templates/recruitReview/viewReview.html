@@ -15,75 +15,151 @@
 
             <ol>
                 <li><a href="index.html">Home</a></li>
-                <li>Inner Page</li>
+                <li>채용 후기</li>
             </ol>
-            <h2>Inner Page</h2>
+            <h2>채용 후기 게시판</h2>
 
         </div>
     </section><!-- End Breadcrumbs -->
 
     <section class="inner-page">
-        <div class="container aos-init aos-animate" data-aos="fade-up">
+        <div class="container">
             <div class="mb-3 row">
                 <label for="title" class="col-sm-2 col-form-label">제목</label>
                 <div class="col-sm-10">
-                    <input type="text" readonly class="form-control-plaintext" id="title" value="테스트 제목">
+                    <input type="text" readonly class="form-control-plaintext" id="title" th:value="${review.title}">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="writeId" class="col-sm-2 col-form-label">작성자</label>
                 <div class="col-sm-10">
-                    <input type="text" readonly class="form-control-plaintext" id="writeId" value="email@example.com">
+                    <input type="text" readonly class="form-control-plaintext" id="writeId" th:value="${review.writeId}">
                 </div>
             </div>
             <div class="mb-3">
                 <label class="col-sm-2 col-form-label">카테고리</label>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="category" id="category1" value="01">
+                    <input class="form-check-input" type="radio" th:checked="${review.category eq '01'}" th:onclick="return(false);" name="category" id="category1" value="01">
                     <label class="form-check-label" for="category1">면접</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="category" id="category2" value="02">
+                    <input class="form-check-input" type="radio" th:checked="${review.category eq '02'}" th:onclick="return(false);" name="category" id="category2" value="02">
                     <label class="form-check-label" for="category2">코딩테스트</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="category" id="category3" value="03">
+                    <input class="form-check-input" type="radio" th:checked="${review.category eq '03'}" th:onclick="return(false);" name="category" id="category3" value="03">
                     <label class="form-check-label" for="category3">기타</label>
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="company" class="col-sm-2 col-form-label">회사명</label>
                 <div class="col-sm-10">
-                    <input type="text" readonly class="form-control-plaintext" id="company" value="코드프레소">
+                    <input type="text" readonly class="form-control-plaintext" id="company" th:value="${review.company}">
                 </div>
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">내용</label>
-                <textarea class="form-control" readonly id="content" rows="3">안녕하세요 내용입니다.</textarea>
+                <textarea class="form-control" readonly id="content" rows="3" th:text="${review.content}"></textarea>
             </div>
-            <div class="mb-3">
-                <label class="form-label">코딩테스트 난이도 선택</label>
-                <div id="myform">
+            <div class="mb-3 codingDiffSector">
+                <label class="form-label">코딩테스트 난이도</label>
+                <div class="myform">
                     <fieldset>
-                        <input type="radio" name="codingDiff" value="5" id="rate1"><label
-                            for="rate1">★</label>
-                        <input type="radio" name="codingDiff" value="4" id="rate2"><label
-                            for="rate2">★</label>
-                        <input type="radio" name="codingDiff" value="3" id="rate3"><label
-                            for="rate3">★</label>
-                        <input type="radio" name="codingDiff" value="2" id="rate4"><label
-                            for="rate4">★</label>
-                        <input type="radio" name="codingDiff" value="1" id="rate5"><label
+                        <input type="radio" name="codingDiff" value="5" id="rate5" th:onclick="return(false);" th:checked="${review.codingDiff eq '5'}"><label
                             for="rate5">★</label>
+                        <input type="radio" name="codingDiff" value="4" id="rate4" th:onclick="return(false);" :checked="${review.codingDiff eq '4'}"><label
+                            for="rate4">★</label>
+                        <input type="radio" name="codingDiff" value="3" id="rate3" th:onclick="return(false);" th:checked="${review.codingDiff eq '3'}"><label
+                            for="rate3">★</label>
+                        <input type="radio" name="codingDiff" value="2" id="rate2" th:onclick="return(false);" th:checked="${review.codingDiff eq '2'}"><label
+                            for="rate2">★</label>
+                        <input type="radio" name="codingDiff" value="1" id="rate1" th:onclick="return(false);" th:checked="${review.codingDiff eq '1'}"><label
+                            for="rate1">★</label>
                     </fieldset>
                 </div>
             </div>
-            <button type="button" class="btn btn-danger">취소</button>
-            <button type="button" class="btn btn-dark">작성</button>
+            <button type="button" class="btn btn-dark" onclick="window.history.back();">뒤로</button>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#md-modifyReview">수정</button>
+            <button type="button" class="btn btn-danger" th:onclick="|location.href='@{/recruitReview/deleteReview(boardNo=${review.boardNo})}'|">삭제</button>
         </div>
     </section>
-
 </main><!-- End #main -->
+
+<!--모달-->
+<div class="modal fade" id="md-modifyReview" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">리뷰 수정</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="modifyReview" th:action="@{/recruitReview/modifyReview}" method = "post">
+                    <input type="hidden" name="md-boardNo" th:value="${review.boardNo}">
+                    <div class="mb-3 row">
+                        <label for="md-title" class="col-sm-2 col-form-label">제목</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="md-title" id="md-title" th:value="${review.title}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="md-writeId" class="col-sm-2 col-form-label">작성자</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext" name="md-writeId" id="md-writeId" th:value="${review.writeId}">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="col-sm-2 col-form-label">카테고리</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" th:checked="${review.category eq '01'}" name="md-category" id="md-category1" value="01">
+                            <label class="form-check-label" for="md-category1">면접</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" th:checked="${review.category eq '02'}" name="md-category" id="md-category2" value="02">
+                            <label class="form-check-label" for="md-category2">코딩테스트</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" th:checked="${review.category eq '03'}" name="md-category" id="md-category3" value="03">
+                            <label class="form-check-label" for="md-category3">기타</label>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="md-company" class="col-sm-2 col-form-label">회사명</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="md-company" id="md-company" th:value="${review.company}">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="md-content" class="form-label">내용</label>
+                        <textarea class="form-control" name="md-content" id="md-content"  rows="3" th:text="${review.content}"></textarea>
+                    </div>
+                    <div class="mb-3 codingDiffSector md-codingDiffSector" >
+                        <label class="form-label">코딩테스트 난이도</label>
+                        <div class="myform">
+                            <fieldset>
+                                <input type="radio" name="md-codingDiff" value="5" id="md-rate5" th:checked="${review.codingDiff eq '5'}"><label
+                                    for="md-rate5">★</label>
+                                <input type="radio" name="md-codingDiff" value="4" id="md-rate4" th:checked="${review.codingDiff eq '4'}"><label
+                                    for="md-rate4">★</label>
+                                <input type="radio" name="md-codingDiff" value="3" id="md-rate3" th:checked="${review.codingDiff eq '3'}"><label
+                                    for="md-rate3">★</label>
+                                <input type="radio" name="md-codingDiff" value="2" id="md-rate2" th:checked="${review.codingDiff eq '2'}"><label
+                                    for="md-rate2">★</label>
+                                <input type="radio" name="md-codingDiff" value="1" id="md-rate1" th:checked="${review.codingDiff eq '1'}"><label
+                                    for="md-rate1">★</label>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="submit" class="btn btn-success" form="modifyReview">수정</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
 

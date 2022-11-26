@@ -24,23 +24,23 @@
 
     <section class="inner-page">
         <div class="container aos-init aos-animate" data-aos="fade-up">
-            <form action="" method = "post">
+            <form th:action="@{/recruitReview/enrollReview}" method = "post">
                 <div class="mb-3 row">
                     <label for="title" class="col-sm-2 col-form-label">제목</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="title">
+                        <input type="text" class="form-control" name="title" id="title">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="writeId" class="col-sm-2 col-form-label">작성자</label>
                     <div class="col-sm-10">
-                        <input type="text" readonly class="form-control-plaintext" id="writeId" value="email@example.com">
+                        <input type="text" readonly class="form-control-plaintext" name="writeId" id="writeId" value="yjkim">
                     </div>
                 </div>
                 <div class="mb-3">
                     <label class="col-sm-2 col-form-label">카테고리</label>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="category" id="category1" value="01">
+                        <input class="form-check-input" type="radio" name="category" id="category1" value="01" checked>
                         <label class="form-check-label" for="category1">면접</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -55,14 +55,14 @@
                 <div class="mb-3 row">
                     <label for="company" class="col-sm-2 col-form-label">회사명</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="company">
+                        <input type="text" class="form-control" name="company" id="company">
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="content" class="form-label">내용</label>
-                    <textarea class="form-control" id="content" rows="3"></textarea>
+                    <textarea class="form-control" name="content" id="content" rows="3"></textarea>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3" id="codingDiffSector">
                     <label class="form-label">코딩테스트 난이도 선택</label>
                     <div id="myform">
                         <fieldset>
@@ -79,8 +79,8 @@
                         </fieldset>
                     </div>
                 </div>
-                <button type="button" class="btn btn-danger">취소</button>
-                <button type="button" class="btn btn-dark">작성</button>
+                <button type="button" class="btn btn-danger" onclick="window.history.back();">취소</button>
+                <button type="submit" class="btn btn-dark">작성</button>
             </form>
         </div>
     </section>
