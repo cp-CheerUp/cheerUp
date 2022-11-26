@@ -11,35 +11,60 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <!--head config layout link-->
+    <th:block th:replace="fragments/config :: configFragment"></th:block>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
     <style>
 label{ display:inline-block; width:100px; line-height:50px; }
     </style>
 
     <script>
-        $(document).ready(function() {
-          $('#info_alert').click(function() {
-            swal({
-              title: "면접 시뮬레이션 이용 방법",
-              text: "1. 원하는 질문 카테고리 선택 : 선택한 질문 카테고리의 갯수대로 질문의 수를 자동 조절합니다(최소 10개 ~ 20개 이하)
-                     챌린저모드 : 각 질문 별로 제한 시간이 있어 더 실감나는 시뮬레이션이 가능합니다.
-                     2. 무응답 질문만 모아보기 : 면접 시뮬레이션 진행 후 결과페이지에서 무응답 질문을 저장하기를 하셨다면,
-                     무응답 질문들이 저장되어 모아볼 수 있습니다. 모아보기 진행 시 '응답했음'으로 체크했다면
-                     해당 질문은 무응답 질문 리스트에서 제외됩니다."
+            $(document).ready(function(){
+                $(".close").click(function(){
+                    $("#info_modal").modal('hide');
+                });
             });
-          });
-        })
-</script>
+
+           function fn_select(){
+
+            var selectCheck = document.getElementsByName("category");
+            var count = 0;
+            var categoryArray = [];
+
+                //카테고리 선택 분야 유효성 검사
+                for(var i=0; i<selectCheck.length; i++){
+                    if(selectCheck[i].checked){
+                        count++;
+                    }
+                }
+                if(!count){
+                    alert("[안내] 카테고리를 하나 이상 선택해주세요");
+                    return false;
+                }
+
+                for (let i = 0; i < selectCheck.length; i++) {
+                  // 속성중에 체크 된 항목이 있을 경우
+                  if (selectCheck[i].checked == true) {
+                    categoryArray.push(selectCheck[i].value);
+                  }
+                }
+                //
+                document.getElementsByName("select_category").value = "categoryArray";
+
+                document.getElementById('interview_select_form').submit()
 
 
-    <!--head config layout link-->
-    <th:block th:replace="fragments/config :: configFragment"></th:block>
+           }
+
+
+    </script>
+
+
 </head>
 
 
@@ -47,6 +72,35 @@ label{ display:inline-block; width:100px; line-height:50px; }
 <!--header config layout link-->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
+<!--modal -->
+<div class="modal" tabindex="-1" id="info_modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 class="modal-title w-100" ><b>면접 시뮬레이션 이용 방법</b></h5>
+                <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5><b>1. 원하는 질문 카테고리 선택</b></h5>
+                <p> 선택한 질문 카테고리의 갯수대로 질문의 수를 자동 조절합니다 <br> (최소 10개 ~ 20개 이하) </p>
+                <p> 화면에 나오는 질문에 내가 대답했다면 체크버튼을, 대답을 조리있게 하지 못했거나
+                    대답할 수 없는 질문이라면 X버튼을 눌러주세요. <br>
+                    X버튼은 '무응답'의 의미로 시뮬레이션 종료 후 저장이 가능합니다.
+                </p>
+                <p>* 챌린저모드 : 각 질문 별로 제한 시간이 있어 더 실감나는  <br> 시뮬레이션이 가능합니다. </p>
+                <hr>
+                <h5><b>2. 무응답 질문만 모아보기</b></h5>
+                <p>면접 시뮬레이션 진행 후 결과페이지에서 무응답 질문을 저장하기를 하셨다면,
+                    무응답 질문들이 저장되어 모아볼 수 있습니다. </p>
+                <p>모아보기 진행 시 '응답했음'으로 체크했다면 해당 질문은 무응답 질문 리스트에서 제외됩니다</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close" data-bs-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal end-->
 <main id="main">
 
     <section class="inner-page" style="margin-top:5%;">
@@ -57,25 +111,30 @@ label{ display:inline-block; width:100px; line-height:50px; }
                 <hr class="my-4">
                 <p class="lead">다양한 카테고리의 면접 질문들을 실전처럼 준비해보세요!</p>
 
-                <button style="float:right;" type="button" id="info_alert"> 이용방법</button>
+                <button style="float:right;" type="button" id="info" data-toggle="modal" data-target="#info_modal"> 이용방법</button>
             </div>
 
             <div class="container text-center">
                 <div class="row justify-content-around" >
                     <div class="col-4" style="border: 1px solid black; background-color:#F8F8F8	; ">
-                        <h5 style=" padding-top:5%"><b>원하는 질문 카테고리 선택</b></h5>
-                        <hr>
-                        <!--div 시작-->
-                        <label><input type="checkbox">프로그래밍</label>
-                        <label><input type="checkbox">자료구조</label>
-                        <label><input type="checkbox">알고리즘</label>
-                        <label><input type="checkbox">DB이론</label>
-                        <label><input type="checkbox">네트워크</label>
-                        <label><input type="checkbox">운영체제</label>
-                        <label><input type="checkbox">인성질문</label>
-                        <label><input type="checkbox">돌발질문</label>
-                        <!--div 끝-->
-                        <p>   <button type="button" class="btn btn-primary">시작하기</button></p>
+
+                        <form id="interview_select_form" name="interview_select_form" method="post" th:action="@{/interview}" accept-charset="UTF-8"  >
+
+
+                            <h5 style=" padding-top:5%"><b>원하는 질문 카테고리 선택</b></h5>
+                            <hr>
+                            <!--div 시작-->
+                            <label><input type="checkbox" name="category" value="programming">프로그래밍</label>
+                            <label><input type="checkbox" name="category" value="programming">자료구조</label>
+                            <label><input type="checkbox" name="category" value="data_structure">알고리즘</label>
+                            <label><input type="checkbox" name="category" value="database">DB이론</label>
+                            <label><input type="checkbox" name="category" value="network">네트워크</label>
+                            <label><input type="checkbox" name="category" value="os">운영체제</label>
+                            <label><input type="checkbox" name="category" value="personality">인성질문</label>
+                            <label><input type="checkbox" name="category" value="surprise">돌발질문</label>
+                            <!--div 끝-->
+                            <p>   <button type="button" class="btn btn-primary" onclick="fn_select();">시작하기</button></p>
+                        </form>
                     </div>
 
                     <!--div 시작-->
