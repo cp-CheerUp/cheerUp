@@ -105,7 +105,6 @@ public class UserController {
         return "redirect:/login";
     }
 
-
     //회원가입 처리
     @ResponseBody
     @PostMapping("/register")
