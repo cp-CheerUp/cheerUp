@@ -15,4 +15,7 @@ public class RecruitReview {
     private String regdate;
     private String company;
     private String codingDiff;
+    private String searchKeyword;
+    private int startIndex;
+    private int pageSize;
 }

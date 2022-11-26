@@ -15,9 +15,9 @@
 
             <ol>
                 <li><a href="index.html">Home</a></li>
-                <li>Inner Page</li>
+                <li>채용 후기</li>
             </ol>
-            <h2>Inner Page</h2>
+            <h2>채용 후기 게시판</h2>
 
         </div>
     </section><!-- End Breadcrumbs -->
@@ -25,26 +25,29 @@
     <section class="inner-page">
         <div class="container aos-init aos-animate" data-aos="fade-up">
             <div class="row" style="margin-bottom: 20px;">
-                <div class="col-4">
-                    <select style="height: 44px;" class="form-select" aria-label="Default select example">
-                        <option value="9999" selected>카테고리</option>
-                        <option value="01">면접</option>
-                        <option value="02">코딩테스트</option>
-                        <option value="03">기타</option>
-                    </select>
-                </div>
-                <div class="col-8">
-                    <div id="custom-search-input">
-                        <div class="input-group col-md-12">
-                            <input type="text" class="form-control" placeholder="내용검색" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-dark" type="button">
-                                    <i class="bi bi-search"></i>
-                                </button>
-                            </span>
+                <form id="searchForm" th:action="@{/recruitReview/mainRecruitReview}" method="get" style="display: contents;">
+                    <input type="hidden" name="page" th:value="${pagination.prevBlock}">
+                    <div class="col-4" style="display: contents;">
+                        <select style="height: 44px;width: 250px;margin: 0;" name="category" class="form-select" aria-label="Default select example">
+                            <option value="9999" selected>카테고리</option>
+                            <option value="01">면접</option>
+                            <option value="02">코딩테스트</option>
+                            <option value="03">기타</option>
+                        </select>
+                    </div>
+                    <div class="col-8" style="width: 500px;">
+                        <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" class="form-control" name="searchKeyword" placeholder="제목 또는 내용 검색" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-dark" type="submit">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="row">
             <table class="table">
@@ -59,8 +62,11 @@
                 </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                <tr th:each="list : ${reviewList}">
-                    <td th:text="${list.rowNum}"></td>
+                <tr th:if="${reviewList.size() == 0 || reviewList == null}" style="text-align: center;">
+                    <td colspan="6">검색 결과가 없습니다.</td>
+                </tr>
+                <tr th:unless="${reviewList.size() == 0 || reviewList == null}" th:each="list : ${reviewList}">
+                    <td th:text="${list.boardNo}"></td>
                     <td th:if="${list.category == '01'}">면접</td>
                     <td th:if="${list.category == '02'}">코딩테스트</td>
                     <td th:if="${list.category == '03'}">기타</td>
@@ -73,17 +79,28 @@
             </table>
             </div>
             <div class="row">
-                <div class="container">
-                    <ul class="pagination">
-                        <li class="disabled"><a href="#">«</a></li>
-                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">»</a></li>
+                <nav aria-label="Page navigation example">
+                    <ul th:if="${reviewList.size() == 0 || reviewList == null}" class="pagination justify-content-center">
                     </ul>
-                </div>
+                    <ul th:unless="${reviewList.size() == 0 || reviewList == null}" class="pagination justify-content-center">
+                        <li class="page-item" th:classappend="${pagination.page == pagination.startPage} ? 'disabled'">
+                            <a class="page-link"  th:href="@{/recruitReview/mainRecruitReview/?page={page} (page = ${pagination.prevBlock})}"href="#" tabindex="-1" aria-disabled="true">이전</a>
+                        </li>
+                        <th:block  th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+                            <li class="page-item"
+                                th:classappend="${pageButton == pagination.page} ? 'active'"
+                                th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
+                                th:each="pageButton : ${#numbers.sequence(start, end)}">
+                                <a class="page-link" th:href="@{/recruitReview/mainRecruitReview/?page={page} (page = ${pageButton})}" th:text=${pageButton}></a>
+                            </li>
+                        </th:block>
+                        <li class="page-item" th:classappend="${pagination.page == pagination.endPage} ? 'disabled'">
+                            <a class="page-link" th:href="@{/recruitReview/mainRecruitReview/?page={page} (page = ${pagination.nextBlock})}" aria-label="Next">
+                                <span aria-hidden="true">다음</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
                 <div>
                     <button type="button" style="float: right;"class="btn btn-outline-dark" onclick="location.href='/recruitReview/writeReview';">글쓰기</button>
                 </div>
