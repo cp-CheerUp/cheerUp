@@ -4,14 +4,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @Data
 public class Interview {
 
-    private String interview_id;
+    private Integer interview_id;
     private String category;
     private String content;
-    private String output;
-    private String failure_late;
+    private Integer output;
+    private Integer failure_late;
+    private LocalDateTime createdAt;
 
 }
