@@ -3,7 +3,13 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
+
+
 <head>
+
+    <!--css연결 Template Main CSS File -->
+
+    <link href="/css/home/admin.css" rel="stylesheet">
 
     <!--head config layout link-->
     <th:block th:replace="fragments/config :: configFragment"></th:block>
@@ -35,18 +41,56 @@
 
             <ol>
                 <li><a href="index.html">Home</a></li>
-                <li>Inner Page</li>
+                <li>관리자 페이지</li>
             </ol>
-            <h2>Inner Page</h2>
+            <h2> &#128272; 관리자 페이지 입니다.</h2>
 
         </div>
     </section><!-- End Breadcrumbs -->
 
     <section class="inner-page">
         <div class="container">
+
+
             <p>
-                Example inner page template
-            </p>
+
+<!--최근 게시물(연동이 되어야 할 텐데)-->
+
+            <h3 class="sidebar-title">Recent Posts</h3>
+            <div class="sidebar-item recent-posts">
+                <div class="post-item clearfix">
+                    <img src="assets/img/blog/blog-recent-1.jpg" alt="">
+                    <h4><a href="blog-single.html">Nihil blanditiis at in nihil autem</a></h4>
+                    <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+
+                <div class="post-item clearfix">
+                    <img src="assets/img/blog/blog-recent-2.jpg" alt="">
+                    <h4><a href="blog-single.html">Quidem autem et impedit</a></h4>
+                    <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+
+                <div class="post-item clearfix">
+                    <img src="assets/img/blog/blog-recent-3.jpg" alt="">
+                    <h4><a href="blog-single.html">Id quia et et ut maxime similique occaecati ut</a></h4>
+                    <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+
+                <div class="post-item clearfix">
+                    <img src="assets/img/blog/blog-recent-4.jpg" alt="">
+                    <h4><a href="blog-single.html">Laborum corporis quo dara net para</a></h4>
+                    <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+
+                <div class="post-item clearfix">
+                    <img src="assets/img/blog/blog-recent-5.jpg" alt="">
+                    <h4><a href="blog-single.html">Et dolores corrupti quae illo quod dolor</a></h4>
+                    <time datetime="2020-01-01">Jan 1, 2020</time>
+                </div>
+
+
+
+                </p>
         </div>
     </section>
 
@@ -153,6 +197,24 @@
 
 <!-- Template Main JS File -->
 <script src="/js/main.js"></script>
+
+<!--홈화면과 동일 푸터 적용-->
+<div class="footer-top">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-lg-5 col-md-12 footer-info">
+                <a href="index.html" class="logo d-flex align-items-center">
+                    <img src="/img/logo.png" alt="">
+                    <span>CheerUp</span>
+                </a>
+                <p style="color: #000080">고객센터: cheerup@chrp.com </p>
+                <div class="social-links mt-3">
+                    <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
 
 </body>
 

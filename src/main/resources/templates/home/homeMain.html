@@ -1,4 +1,9 @@
-<body><th:block th:replace="fragments/config :: configFragment"></th:block>
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
 
 
 <meta charset="utf-8">
@@ -11,6 +16,7 @@
 <meta content="" name="keywords">
 
 <!-- Favicons -->
+
 <link href="/img/favicon.png" rel="icon">
 <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -26,9 +32,12 @@
 <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
 
+    <th:block th:replace="fragments/config :: configFragment"></th:block>
+
+
 <!--css연결 Template Main CSS File -->
 
-<link href="/css/home.css" rel="stylesheet">
+<link href="/css/home/home.css" rel="stylesheet">
 
 <!-- =======================================================
 * Template Name: FlexStart - v1.11.1
@@ -100,8 +109,9 @@ footer {
 
 </style>
 
+</head>
 
-
+<body>
 
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top">
@@ -144,8 +154,7 @@ footer {
                 <p>  IT 취업정보 커뮤니티 CheerUp </p>
             </header>
 
-
-
+<!--게시판 바로가기-->
             <div class="row gy-4">
 
                 <div class="col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
@@ -179,14 +188,22 @@ footer {
         </div>
 
     </section><!-- End Services Section -->
+
+
+    <!--잡코리아 공채 달력-->
+
+
+    <section id="calendar" class="pricing">
+        <div class="container text-center">
+            <div class="row justify-content-around" >
+            <span><iframe id="pageFrame" name="pageFrame" src="http://www.jobkorea.co.kr/Starter/calendar/sub/month" width="1295px" height="1000px" scrolling="auto"></iframe></span>
+            </div>
+            </div>
+    </section>
+
+
 </main>
 
-
-<section id="calendar" class="pricing">
-    <div class="container">
-        <span>달력자리</span>
-    </div>
-</section>
 
 
 <!-- ======= Footer ======= -->
@@ -199,7 +216,6 @@ footer {
                     <h4>Our Newsletter</h4>
 
                     <p style="color: #000080">CheerUp에서 추천하는 취업정보를 매월 둘째 주 보내드려요!</p>
-                    <!--color=" #007aff;"-->
 
                 </div>
                 <div class="col-lg-6">
@@ -299,3 +315,7 @@ footer {
 
 
 </body>
+
+
+
+</html>

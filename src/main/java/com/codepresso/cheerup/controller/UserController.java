@@ -119,7 +119,7 @@ public class UserController {
         if (idCheck == 0) {
 
             //아이디 중복되지 않음 -> 회원 가입 처리
-            user.setRole("USER");
+            user.setRole("ROLE_ADMIN");
             this.userService.insertMember(user);
             return "<script>alert('[안내] 회원가입 완료!');location.replace('/');</script>";
 
