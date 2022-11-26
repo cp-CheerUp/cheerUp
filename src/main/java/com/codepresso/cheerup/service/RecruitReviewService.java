@@ -14,9 +14,21 @@ public class RecruitReviewService {
 
     private final RecruitReviewMapper recruitReviewMapper;
 
-    public List<RecruitReview> getAllRecruitReview() {
-        return recruitReviewMapper.getAllRecruitReview();
+    public List<RecruitReview> getAllRecruitReview(int startIndex, int pageSize) {
+        return recruitReviewMapper.getAllRecruitReview(startIndex, pageSize);
     }
 
     public RecruitReview getOneRecruitReview(int boardNo) {return recruitReviewMapper.getOneRecruitReview(boardNo);}
+
+    public int enrollReview(RecruitReview review) {return recruitReviewMapper.enrollReview(review);}
+
+    public int findAllCnt() {return recruitReviewMapper.findAllCnt();}
+
+    public int findSearchCnt(RecruitReview review) {return recruitReviewMapper.findSearchCnt(review);}
+
+    public List<RecruitReview> getSearchRecruitReview(RecruitReview review) {
+        return recruitReviewMapper.getSearchRecruitReview(review);
+    }
+    public int updateReview(RecruitReview review){return recruitReviewMapper.updateReview(review);}
+    public int deleteReview(int boardNo){return recruitReviewMapper.deleteReview(boardNo);}
 }
