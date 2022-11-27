@@ -29,16 +29,16 @@
                     <input type="hidden" name="page" th:value="${pagination.prevBlock}">
                     <div class="col-4" style="display: contents;">
                         <select style="height: 44px;width: 250px;margin: 0;" name="category" class="form-select" aria-label="Default select example">
-                            <option value="9999" selected>카테고리</option>
-                            <option value="01">면접</option>
-                            <option value="02">코딩테스트</option>
-                            <option value="03">기타</option>
+                            <option th:selected="${searchCategory =='9999' || searchCategory == null}" value="9999">카테고리</option>
+                            <option th:selected="${searchCategory =='01'}" value="01">면접</option>
+                            <option th:selected="${searchCategory =='02'}" value="02">코딩테스트</option>
+                            <option th:selected="${searchCategory =='03'}" value="03">기타</option>
                         </select>
                     </div>
                     <div class="col-8" style="width: 500px;">
                         <div id="custom-search-input">
                             <div class="input-group col-md-12">
-                                <input type="text" class="form-control" name="searchKeyword" placeholder="제목 또는 내용 검색" />
+                                <input type="text" th:value="${searchKeyword}" class="form-control" name="searchKeyword" placeholder="제목 또는 내용 검색" />
                                 <span class="input-group-btn">
                                     <button class="btn btn-dark" type="submit">
                                         <i class="bi bi-search"></i>
@@ -66,7 +66,7 @@
                     <td colspan="6">검색 결과가 없습니다.</td>
                 </tr>
                 <tr th:unless="${reviewList.size() == 0 || reviewList == null}" th:each="list : ${reviewList}">
-                    <td th:text="${list.boardNo}"></td>
+                    <td th:text="${list.rownum}"></td>
                     <td th:if="${list.category == '01'}">면접</td>
                     <td th:if="${list.category == '02'}">코딩테스트</td>
                     <td th:if="${list.category == '03'}">기타</td>
@@ -84,18 +84,18 @@
                     </ul>
                     <ul th:unless="${reviewList.size() == 0 || reviewList == null}" class="pagination justify-content-center">
                         <li class="page-item" th:classappend="${pagination.page == pagination.startPage} ? 'disabled'">
-                            <a class="page-link"  th:href="@{/recruitReview/mainRecruitReview/?page={page} (page = ${pagination.prevBlock})}"href="#" tabindex="-1" aria-disabled="true">이전</a>
+                            <a class="page-link"  th:href="@{/recruitReview/mainRecruitReview(page = ${pagination.prevBlock},category = ${searchCategory}, searchKeyword= ${searchKeyword})}"href="#" tabindex="-1" aria-disabled="true">이전</a>
                         </li>
                         <th:block  th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
                             <li class="page-item"
                                 th:classappend="${pageButton == pagination.page} ? 'active'"
                                 th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
                                 th:each="pageButton : ${#numbers.sequence(start, end)}">
-                                <a class="page-link" th:href="@{/recruitReview/mainRecruitReview/?page={page} (page = ${pageButton})}" th:text=${pageButton}></a>
+                                <a class="page-link" th:href="@{/recruitReview/mainRecruitReview(page = ${pageButton},category = ${searchCategory}, searchKeyword= ${searchKeyword})}" th:text=${pageButton}></a>
                             </li>
                         </th:block>
                         <li class="page-item" th:classappend="${pagination.page == pagination.endPage} ? 'disabled'">
-                            <a class="page-link" th:href="@{/recruitReview/mainRecruitReview/?page={page} (page = ${pagination.nextBlock})}" aria-label="Next">
+                            <a class="page-link" th:href="@{/recruitReview/mainRecruitReview(page = ${pagination.nextBlock},category = ${searchCategory}, searchKeyword= ${searchKeyword})}" aria-label="Next">
                                 <span aria-hidden="true">다음</span>
                             </a>
                         </li>
