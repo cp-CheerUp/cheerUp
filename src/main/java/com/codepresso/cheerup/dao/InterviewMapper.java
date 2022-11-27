@@ -13,4 +13,6 @@ public interface InterviewMapper {
 
     List<Interview> getSingleList(String category_origin);
     List<Interview> getMultiList(String[] multiArray);
+
+    List<Interview> getMultiListTest(String[] multiArray, int limitCount);
 }

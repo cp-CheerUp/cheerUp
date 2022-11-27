@@ -40,6 +40,28 @@
 
 
     </style>
+
+    <script>
+            $(document).ready(function(){
+                $.ajax({
+                    url : "/interviewing",
+                    type : 'GET',
+                    data : {
+
+                    },
+                    success : function(data) { // controllor에서 list를 return 받았음
+                                alert(data);
+
+                        }
+                     },
+                    error : function() {
+                        alert("error");
+                    }
+                });
+            });
+
+
+    </script>
     <!--head config layout link-->
     <th:block th:replace="fragments/config :: configFragment"></th:block>
 </head>
@@ -49,7 +71,12 @@
 <!--header config layout link-->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
+
+
 <main id="main">
+<!--    <span th:each="i : ${interview}">-->
+<!--        <p th:text="${i.interview_id}">no</p>-->
+<!--        <p th:text="${i.question}">title</p>    </span>-->
 
     <section class="inner-page" style="margin-top:5%;">
 

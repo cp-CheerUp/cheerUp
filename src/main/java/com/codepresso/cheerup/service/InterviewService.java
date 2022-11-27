@@ -25,4 +25,7 @@ public class InterviewService {
     }
 
 
+    public List<Interview> getMultiListTest(String[] multiArray, int limitCount) {
+        return interviewMapper.getMultiListTest(multiArray,limitCount);
+    }
 }

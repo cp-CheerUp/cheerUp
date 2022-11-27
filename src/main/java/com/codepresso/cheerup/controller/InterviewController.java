@@ -21,10 +21,11 @@ public class InterviewController {
 
     //사용자가 선택한 카테고리의 질문 조회
     @PostMapping("/interview")
-    public List<Interview> interview_select(Interview interview, Authentication authentication){
+    public List<Interview> interview_select(Interview interview){
 
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String id = userDetails.getUsername();
+//        Authentication authentication
+//        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+//        String id = userDetails.getUsername();
         String category_origin = interview.getCategory();
         System.out.println("여기는 컨트롤러고 카테고리를 받았어요"+category_origin);
 
@@ -44,7 +45,7 @@ public class InterviewController {
             String[] multiArray = category_origin.split(",");
             System.out.println("여기는 컨트롤러고 조건문 복합 카테고리 안에 있어요"+multiArray);
 
-            //쿼리 갯수 제한 카운트
+//            //쿼리 갯수 제한 카운트
             int limitCount = 0;
 
             if(multiArray.length == 2){
@@ -69,14 +70,14 @@ public class InterviewController {
                 limitCount = 9;
             }
 
+            System.out.println(limitCount);
+
 
             List<Interview> multiList = interviewService.getMultiList(multiArray);
-
-
+          //  List<Interview> multiListTest = interviewService.getMultiListTest(multiArray,limitCount);
 
 
             //질문들의 output 카운트 +1 증가
-
             return multiList;
 
         }
