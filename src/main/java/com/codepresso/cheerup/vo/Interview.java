@@ -10,11 +10,11 @@ import java.time.LocalDateTime;
 @Data
 public class Interview {
 
-    private Integer interview_id;
+    private int interview_id;
     private String category;
-    private String content;
-    private Integer output;
-    private Integer failure_late;
+    private String question;
+    private int output;
+    private int failure_late;
     private LocalDateTime createdAt;
 
 }
