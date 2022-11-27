@@ -13,8 +13,8 @@ public class Interview {
     private int interview_id;
     private String category;
     private String question;
-    private int output;
-    private int failure_late;
+    private int total;
+    private int fail;
     private LocalDateTime createdAt;
 
 }
