@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Interview_response {
 
-    private String interview_id;
+    private int interview_id;
     private String id;
     private String answer;
 }

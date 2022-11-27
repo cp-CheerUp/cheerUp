@@ -14,9 +14,15 @@ public class InterviewService {
 
     private final InterviewMapper interviewMapper;
 
-    public List<Interview> getSelectedList(Interview interview) {
-
-        return interviewMapper.getSelectedList(interview);
-
+    //READ : 사용자가 선택한 카테고리 질문 가져오기(단일 선택)
+    public List<Interview> getSingleList(String category_origin) {
+        return interviewMapper.getSingleList(category_origin);
     }
+
+    //READ : 사용자가 선택한 카테고리 질문 가져오기(복합 선택)
+    public List<Interview> getMultiList(String[] multiArray) {
+        return interviewMapper.getMultiList(multiArray);
+    }
+
+
 }
