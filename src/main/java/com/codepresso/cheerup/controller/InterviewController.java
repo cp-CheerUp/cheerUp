@@ -34,6 +34,7 @@ public class InterviewController {
             System.out.println("여기는 컨트롤러고 조건문 단일 카테고리가 안에 있어요"+category_origin);
 
             List<Interview> singleList = interviewService.getSingleList(category_origin);
+            //질문들의 output 카운트 +1 증가
 
 
             return singleList;
@@ -43,23 +44,42 @@ public class InterviewController {
             String[] multiArray = category_origin.split(",");
             System.out.println("여기는 컨트롤러고 조건문 복합 카테고리 안에 있어요"+multiArray);
 
+            //쿼리 갯수 제한 카운트
+            int limitCount = 0;
+
+            if(multiArray.length == 2){
+                //카테고리 2개 -> 각 카테고리당 5개씩
+                limitCount = 5;
+            } else if (multiArray.length == 3) {
+                //카테고리 3개 -> 각 카테고리당 3개씩
+                limitCount = 3;
+            } else if (multiArray.length == 4) {
+                //카테고리 4개 -> 각 카테고리당 3개씩
+                limitCount = 3;
+            } else if (multiArray.length == 5) {
+                //카테고리 5개 -> 각 카테고리당 3개씩
+                limitCount = 2;
+            } else if (multiArray.length == 6) {
+                limitCount = 6;
+            } else if (multiArray.length == 7) {
+                limitCount = 7;
+            } else if (multiArray.length == 8) {
+                limitCount = 8;
+            } else if (multiArray.length == 9) {
+                limitCount = 9;
+            }
+
+
             List<Interview> multiList = interviewService.getMultiList(multiArray);
+
+
+
+
+            //질문들의 output 카운트 +1 증가
 
             return multiList;
 
-//            String[] comma_seperate = category_origin.split(",");
-//            List<String> multipleList = new ArrayList<>();
-//
-//            for(int i=0;i<comma_seperate.length; i++){
-//                multipleList.add(comma_seperate[i]);
-//            }
-
-
         }
-
-
-//                interviewService.getSelectedList(interview);
-        //질문들의 output 카운트 +1 증가
 
     }
 
