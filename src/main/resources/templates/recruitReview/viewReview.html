@@ -79,8 +79,10 @@
                 </div>
             </div>
             <button type="button" class="btn btn-dark" onclick="window.history.back();">뒤로</button>
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#md-modifyReview">수정</button>
-            <button type="button" class="btn btn-danger" th:onclick="|location.href='@{/recruitReview/deleteReview(boardNo=${review.boardNo})}'|">삭제</button>
+            <div th:if="${review.writeId == loginUser}" style="display: contents;">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#md-modifyReview">수정</button>
+                <button type="button" class="btn btn-danger" th:onclick="|location.href='@{/recruitReview/deleteReview(boardNo=${review.boardNo})}'|">삭제</button>
+            </div>
         </div>
     </section>
 </main><!-- End #main -->
