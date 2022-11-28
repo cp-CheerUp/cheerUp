@@ -50,7 +50,7 @@ public class InterviewPageController {
         System.out.println(result);
 
         //질문 total 갯수 1 증가시키기
-        //     interviewService.updateTotal =
+   //     interviewService.updateTotal =
 
         return "/";
     }
