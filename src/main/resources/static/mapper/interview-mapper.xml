@@ -12,7 +12,7 @@
 
     <select id="getSingleList" parameterType="String" resultType="com.codepresso.cheerup.vo.Interview">
         SELECT * FROM Interview
-        WHERE category = #{category_origin}
+        WHERE category = #{category_origin} order by rand() limit 10
     </select>
 
     <select id="getMultiList"  resultType="com.codepresso.cheerup.vo.Interview">
@@ -23,6 +23,66 @@
         </foreach>
     </select>
 
+
+    <select id="getProgrammingList"  resultType="com.codepresso.cheerup.vo.Interview">
+        SELECT * FROM Interview
+        WHERE category = #{category} order by rand()
+        limit #{limitCount}
+    </select>
+
+    <select id="getData_structureList"  resultType="com.codepresso.cheerup.vo.Interview">
+        SELECT * FROM Interview
+        WHERE category = #{category} order by rand()
+        limit #{limitCount}
+    </select>
+
+    <select id="getAlgorithmList"  resultType="com.codepresso.cheerup.vo.Interview">
+        SELECT * FROM Interview
+        WHERE category = #{category} order by rand()
+        limit #{limitCount}
+    </select>
+
+    <select id="getDatabaseList"  resultType="com.codepresso.cheerup.vo.Interview">
+        SELECT * FROM Interview
+        WHERE category = #{category} order by rand()
+        limit #{limitCount}
+    </select>
+
+    <select id="getNetworkList"  resultType="com.codepresso.cheerup.vo.Interview">
+        SELECT * FROM Interview
+        WHERE category = #{category} order by rand()
+        limit #{limitCount}
+    </select>
+
+    <select id="getOsList"  resultType="com.codepresso.cheerup.vo.Interview">
+        SELECT * FROM Interview
+        WHERE category = #{category} order by rand()
+        limit #{limitCount}
+    </select>
+
+    <select id="getPersonalityList"  resultType="com.codepresso.cheerup.vo.Interview">
+        SELECT * FROM Interview
+        WHERE category = #{category} order by rand()
+        limit #{limitCount}
+    </select>
+
+    <select id="getSurpriseList"  resultType="com.codepresso.cheerup.vo.Interview">
+        SELECT * FROM Interview
+        WHERE category = #{category} order by rand()
+        limit #{limitCount}
+    </select>
+
+
+    <insert id="insertUserResponse" parameterType="map">
+        INSERT INTO Interview_response
+        (id, interview_id, answer) values( #{id},
+        <foreach collection="array" item="id_array" open="(" close=")" separator=",">
+            #{id_array},
+        </foreach>
+        <foreach collection="array" item="answer_array" open="(" close=")" separator=",">
+            #{answer_array})
+        </foreach>
+    </insert>
 
 
 

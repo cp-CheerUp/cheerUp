@@ -10,5 +10,5 @@ public class Interview_response {
 
     private int interview_id;
     private String id;
-    private String answer;
+    private String interview_answer;
 }
