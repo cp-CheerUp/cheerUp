@@ -9,9 +9,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +50,38 @@ public class FreeBoardController {
     }
 
     @GetMapping("/write")
-    public String freeboardWrite() {
+    public String freeboardWrite(Model model, Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String user = ((User) userDetails).getId();
+
+        model.addAttribute("user", user);
         return "freeBoard/freeboardWrite";
+    }
+
+    @PostMapping("/insert")
+    public String insertFreeBoard(Model model, FreeBoard freeBoard) {
+        int insertFreeBoard = freeBoardService.insertFreeBoard(freeBoard);
+        return "redirect:main";
+    }
+
+    @PostMapping("/update")
+    public String updateFreeBoard(Model model, HttpServletRequest httpServletRequest) {
+        FreeBoard freeBoard = new FreeBoard();
+        freeBoard.setBoardNo(Integer.parseInt(httpServletRequest.getParameter("md-boardNo")));
+        freeBoard.setTitle(httpServletRequest.getParameter("md-title"));
+        freeBoard.setContent(httpServletRequest.getParameter("md-content"));
+
+        int updateFreeBoard = freeBoardService.updateFreeBoard(freeBoard);
+        return "redirect:view?boardNo="+freeBoard.getBoardNo();
+    }
+
+    @GetMapping("/delete")
+    public String deleteFreeBoard(Model model, @RequestParam int boardNo) {
+        int result = freeBoardService.deleteFreeBoard(boardNo);
+        if (result == 1) {
+            return "redirect:main";
+        } else {
+            return "삭제가 되지 않았습니다.";
+        }
     }
 }
