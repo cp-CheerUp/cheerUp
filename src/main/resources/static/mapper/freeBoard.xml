@@ -21,7 +21,7 @@
 
     <!--  게시글 수정  -->
     <update id="updateFreeBoard" parameterType="FreeBoard">
-        update freeboard set title=${title}, content=#{content}, category=#{category} where boardNo=#{boardNo}
+        update freeboard set title=#{title}, content=#{content} where boardNo=#{boardNo}
     </update>
 
     <!--  게시글 삭제  -->

@@ -13,8 +13,9 @@ public interface FreeBoardMapper {
     List<FreeBoard> getAllFreeBoardList();
     FreeBoard getFreeBoardDetail(int boardNo);
 
-    void insertFreeBoard(FreeBoard freeBoard);
-
+    int insertFreeBoard(FreeBoard freeBoard);
+    int updateFreeBoard(FreeBoard freeBoard);
+    int deleteFreeBoard(int boardNo);
 
 
 }
