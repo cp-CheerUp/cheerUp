@@ -51,4 +51,8 @@ public class UserService implements UserDetailsService {
         return userMapper.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException((id)));
     }
+
+    public User chkUserId(User user) {
+        return userMapper.chkUserId(user);
+    }
 }

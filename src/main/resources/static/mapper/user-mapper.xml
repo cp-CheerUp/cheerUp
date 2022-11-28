@@ -26,4 +26,9 @@
         from member
         WHERE id = #{id} and password = #{password}
     </select>
+
+    <select id="chkUserId" resultType="User" parameterType="User">
+        select * from member where name = #{name} and phone = #{phone};
+    </select>
+
 </mapper>
