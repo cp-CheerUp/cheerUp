@@ -21,4 +21,5 @@ public interface UserMapper {
     String loginCheck(String id, String password);
 
 
+    User chkUserId(User user);
 }
