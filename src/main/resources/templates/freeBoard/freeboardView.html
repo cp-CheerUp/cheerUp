@@ -92,21 +92,79 @@
                 <textarea class="form-control" readonly id="content" rows="3" th:text="${freeboardDetail.content}"></textarea>
             </div>
 
+            <div th:if="${freeboardDetail.writeId == user}" style="display: contents;">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#md-updateFreeBoard">수정</button>
+                <button type="button" class="btn btn-danger" th:onclick="|location.href='@{/freeboard/delete(boardNo=${freeboardDetail.boardNo})}'|">삭제</button>
+            </div>
+
             <!--댓글-->
-            <br>
+            <br><br>
             <div id="form-commentInfo">
                 <div id="comment-count">댓글 <span id="count">0</span></div>
                 <input id="comment-input" placeholder="댓글을 입력해 주세요.">
                 <button id="submit">등록</button>
             </div>
             <div id=comments> </div>
-
-            <button type="button" class="btn btn-danger">삭제</button>
-            <button type="button" class="btn btn-dark">작성</button>
         </div>
     </section>
 </main>
 <!-- End #main -->
+
+<!--수정 및 삭제-->
+<div class="modal fade" id="md-updateFreeBoard" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">글 수정하기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateFreeBoard" th:action="@{/freeboard/update}" method = "post">
+                    <input type="hidden" name="md-boardNo" th:value="${freeboardDetail.boardNo}">
+                    <div class="mb-3 row">
+                        <label for="md-title" class="col-sm-2 col-form-label">제목</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="md-title" id="md-title" th:value="${freeboardDetail.title}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="md-writeId" class="col-sm-2 col-form-label">작성자</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control-plaintext" name="md-writeId" id="md-writeId" th:value="${freeboardDetail.writeId}">
+                        </div>
+                    </div>
+<!--                    <div class="mb-3">-->
+<!--                        <label for="md-category" class="col-sm-2 col-form-label">카테고리</label>-->
+<!--                        <div class="col-sm-10">-->
+<!--                            <input type="text" readonly class="form-control-plaintext" id="md-category" th:value="${freeboardDetail.category}">-->
+<!--                        </div>-->
+<!--&lt;!&ndash;                        <label class="col-sm-2 col-form-label">카테고리</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="form-check form-check-inline">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <input class="form-check-input" type="radio" th:checked="${review.category eq '01'}" name="md-category" id="md-category1" value="01">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <label class="form-check-label" for="md-category1">면접</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="form-check form-check-inline">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <input class="form-check-input" type="radio" th:checked="${review.category eq '02'}" name="md-category" id="md-category2" value="02">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <label class="form-check-label" for="md-category2">코딩테스트</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="form-check form-check-inline">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <input class="form-check-input" type="radio" th:checked="${review.category eq '03'}" name="md-category" id="md-category3" value="03">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <label class="form-check-label" for="md-category3">기타</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--                    </div>-->
+                    <div class="mb-3">
+                        <label for="md-content" class="form-label">내용</label>
+                        <textarea class="form-control" name="md-content" id="md-content"  rows="3" th:text="${freeboardDetail.content}"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="submit" class="btn btn-success" form="updateFreeBoard">수정</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
