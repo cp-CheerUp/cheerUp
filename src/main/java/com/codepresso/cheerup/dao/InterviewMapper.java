@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface InterviewMapper {
-
+    
     //유저가 선택한 카테고리의 정보만 가져오기
     List<Interview> getSelectedList(Interview interview);
 
