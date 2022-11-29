@@ -36,7 +36,7 @@
         select count(*) from recruitment_review
             where
             (title like CONCAT('%',#{searchKeyword},'%') or content like CONCAT('%',#{searchKeyword},'%'))
-            <if test='!category.equals("9999")'>
+            <if test='!(category.equals("9999") || category.equals(""))'>
                 and category = #{category}
             </if>
     </select>
@@ -61,7 +61,7 @@
         (SELECT @rownum:=0) TMP
         WHERE
         (title like CONCAT('%',#{searchKeyword},'%') or content like CONCAT('%',#{searchKeyword},'%'))
-        <if test='!category.equals("9999")'>
+        <if test='!(category.equals("9999") || category.equals(""))'>
             and category = #{category}
         </if>
         ORDER BY boardNo DESC, rownum desc limit #{startIndex}, #{pageSize}
