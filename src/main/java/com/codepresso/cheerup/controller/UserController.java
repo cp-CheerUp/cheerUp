@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor //final 객체 생성자 생성
@@ -151,10 +152,42 @@ public class UserController {
 
     @PostMapping("/gofindId")
     @ResponseBody // 자바 객체를 HTTP 응답 본문의 객체로 변환
-    public String gofingId(User user){
-        System.out.println(user.getId());
+    public HashMap<String, Object> gofindId(User user){
+        HashMap<String, Object> map = new HashMap<>();
 
-        User chkId = userService.chkUserId(user);
-        return "성공";
+        String chkId = userService.chkUserId(user);
+        if(chkId == null){
+            map.put("noId","해당 아이디가 존재하지 않습니다.");
+        }else{
+            map.put("hasId",chkId);
+        }
+        return map;
+    }
+
+    @PostMapping("/gofindPw")
+    @ResponseBody // 자바 객체를 HTTP 응답 본문의 객체로 변환
+    public HashMap<String, Object> gofindPw(User user){
+        HashMap<String, Object> map = new HashMap<>();
+
+        String chkPw = userService.chkUserPw(user);
+
+        if(chkPw == null){
+            map.put("noId","해당 정보가 존재하지 않습니다. 다시 한번 확인 해주세요.");
+        }else{
+            map.put("hasId","비밀번호 변경");
+        }
+        return map;
+    }
+
+    @PostMapping("/modifyPw")
+    @ResponseBody
+    public String modifyPw(User user){
+        int modifyPw = userService.modifyPw(user);
+        if(modifyPw == 1){
+            return "success";
+        }else{
+            return "fail";
+        }
+
     }
 }

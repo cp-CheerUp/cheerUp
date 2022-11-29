@@ -76,11 +76,16 @@
         url:"gofindId",
         type: "POST",
         data: $("#findId_form").serialize(),
-        dataType: "text",
-        contentType: "application/json; charset=UTF-8",
-        dataType: 'text', // success 시 받아올 데이터 형식
+        dataType: 'JSON', // success 시 받아올 데이터 형식
         success: function(result) {
           console.log(result);
+          $(".modal-text").html("");
+          if(result.hasOwnProperty("hasId")){
+            $(".modal-text").html("아이디 : " + result.hasId);
+          }else{
+            $(".modal-text").html(result.noId);
+          }
+          $("#modal_fingId").modal('show');
         }
       });
 
@@ -108,7 +113,7 @@
           <article class="card-body mx-auto" style="max-width: 400px;">
             <h4 class="card-title  text-center"><b>아이디 찾기</b></h4>
             <hr>
-            <form id="findId_form" name="findId_form" th:action="@{/gofindId}" accept-charset="UTF-8" >
+            <form id="findId_form" name="findId_form" accept-charset="UTF-8" >
               <div class="form-group input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="far fa-address-card"></i></span>
@@ -124,6 +129,7 @@
               <div class="form-group">
                 <button type="button" onclick="form_check();" class="btn btn-primary">찾기</button>
               </div> <!-- form-group// -->
+              <p class="text-center"><a href="/signup">로그인</a>  |  <a href="/findPw">비밀번호 찾기</a></p>
             </form>
           </article>
         </div> <!-- card.// -->
@@ -134,19 +140,16 @@
 </main>
 <!-- End #main -->
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_fingId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">알림</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-
-      </div>
+      <div class="modal-body modal-text"></div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
       </div>
     </div>
   </div>

@@ -52,7 +52,17 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException((id)));
     }
 
-    public User chkUserId(User user) {
+    public String chkUserId(User user) {
         return userMapper.chkUserId(user);
+    }
+
+    public String chkUserPw(User user) {
+        return userMapper.chkUserPw(user);
+    }
+
+    public int modifyPw(User user) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(user.getPassword()));
+        return userMapper.modifyPw(user);
     }
 }
