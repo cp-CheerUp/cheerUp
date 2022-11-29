@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label for="content" class="form-label">내용</label>
+                <label for="content" class="form-label">질문을 입력해 주세요.</label>
                 <textarea class="form-control" readonly id="content" rows="3" th:text="${feedbackboardDetail.content}"></textarea>
             </div>
 
@@ -94,12 +94,24 @@
 
             <!--댓글-->
             <br><br>
-            <div id="form-commentInfo">
-                <div id="comment-count">댓글 <span id="count">0</span></div>
-                <input id="comment-input" placeholder="댓글을 입력해 주세요.">
-                <button id="submit">등록</button>
+            <form th:action="@{/feedback/view/insertReply}" method="post">
+                <input type="hidden" th:value="${feedbackboardDetail.boardNo}" name="re-boardNo">
+                <input type="hidden" th:value="${feedbackboardDetail.writeId}" name="re-writeId">
+            <div id="form-commentInfo" class="col-md-6">
+                <input type="text" class="form-control" name="re-content" id="re-content" style="float: left; width: 90%" placeholder="댓글을 입력해 주세요.">
+                <button id="submit" style="float: right;">등록</button>
+            </div> <br>
+            </form>
+            <div th:each="replyList : ${replyList}">
+                <div class="mb-3">
+                    <br>
+                    <input type="text" readonly class="form-control-plaintext" name="_writeId" th:value="${replyList.writeId}">
+                    <input type="text" readonly class="form-control-plaintext" name="_reply" th:value="${replyList.reply}">
+                </div>
+                <div th:if="${replyList.writeId == user}" style="display: contents;">
+                    <button type="button" class="btn btn-danger" th:onclick="|location.href='@{/feedback/view/deleteReply(boardNo=${replyList.boardNo},replyNo=${replyList.replyNo})}'|">삭제</button>
+                </div>
             </div>
-            <div id=comments> </div>
         </div>
 
     </section>
