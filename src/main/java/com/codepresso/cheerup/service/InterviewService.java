@@ -3,6 +3,7 @@ package com.codepresso.cheerup.service;
 import com.codepresso.cheerup.dao.InterviewMapper;
 import com.codepresso.cheerup.vo.Interview;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -115,5 +116,82 @@ public class InterviewService {
         int result = interviewMapper.insertUserResponse(id,id_array,answer_array);
 
         return result;
+    }
+
+    public int insertUserResponse2(String id, String interview_id, String interview_answer) {
+        int result2 = interviewMapper.insertUserResponse2(id,interview_id,interview_answer);
+
+        return result2;
+    }
+
+    //total 갯수 +1 증가시키기
+    public void updateTotalCount(String id_array) {
+        interviewMapper.updateTotalCount(id_array);
+    }
+
+    public List<Interview> getResponseList(String[] id_array) {
+        return interviewMapper.getResponseList(id_array);
+    }
+
+//    public int getRowCount() {
+//        return interviewMapper.getRowCount();
+//    }
+
+    public void insertFailCount(@Param("failId") String[] failId ) {
+        interviewMapper.insertFailCount(failId);
+    }
+
+    public void updateFailCounting(@Param("id_list") List<Object> id_list) {
+        interviewMapper.updateFailCounting(id_list);
+
+    }
+
+    public void updateFailCounting2(String failId) {
+        interviewMapper.updateFailCounting2(failId);
+
+    }
+
+    public int getPgCount(String id) {
+        int result = interviewMapper.getPgCount(id);
+        return result;
+    }
+
+    public int getDsCount(String id) {
+        int result = interviewMapper.getDsCount(id);
+        return result;
+    }
+
+    public int getAgCount(String id) {
+        int result = interviewMapper.getAgCount(id);
+        return result;
+    }
+
+    public int getDbCount(String id) {
+        int result = interviewMapper.getDbCount(id);
+        return result;
+    }
+
+    public int getNwCount(String id) {
+        int result = interviewMapper.getNwCount(id);
+        return result;
+    }
+
+    public int getOsCount(String id) {
+        int result = interviewMapper.getOsCount(id);
+        return result;
+    }
+
+    public int getPsCount(String id) {
+        int result = interviewMapper.getPsCount(id);
+        return result;
+    }
+
+    public int getSpCount(String id) {
+        int result = interviewMapper.getSpCount(id);
+        return result;
+    }
+
+    public List<Interview> getFailList(String id) {
+        return interviewMapper.getFailList(id);
     }
 }
