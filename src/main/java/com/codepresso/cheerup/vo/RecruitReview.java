@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Data
 public class RecruitReview {
-    private int rowNum;
+    private int rownum;
     private int boardNo;
     private String title;
     private String content;

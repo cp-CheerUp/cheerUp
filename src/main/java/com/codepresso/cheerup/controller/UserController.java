@@ -3,6 +3,8 @@ package com.codepresso.cheerup.controller;
 import com.codepresso.cheerup.service.UserService;
 import com.codepresso.cheerup.vo.User;
 import lombok.RequiredArgsConstructor;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,14 +12,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor //final 객체 생성자 생성
@@ -105,7 +105,6 @@ public class UserController {
         return "redirect:/login";
     }
 
-
     //회원가입 처리
     @ResponseBody
     @PostMapping("/register")
@@ -140,4 +139,55 @@ public class UserController {
     }
 
 
+    // 아이디 찾기
+    @GetMapping("/findId")
+    public String findId(){
+        return "user/manage/findId";
+    }
+    // 비밀번호 찾기
+    @GetMapping("/findPw")
+    public String findPw(){
+        return "user/manage/findPw";
+    }
+
+    @PostMapping("/gofindId")
+    @ResponseBody // 자바 객체를 HTTP 응답 본문의 객체로 변환
+    public HashMap<String, Object> gofindId(User user){
+        HashMap<String, Object> map = new HashMap<>();
+
+        String chkId = userService.chkUserId(user);
+        if(chkId == null){
+            map.put("noId","해당 아이디가 존재하지 않습니다.");
+        }else{
+            map.put("hasId",chkId);
+        }
+        return map;
+    }
+
+    @PostMapping("/gofindPw")
+    @ResponseBody // 자바 객체를 HTTP 응답 본문의 객체로 변환
+    public HashMap<String, Object> gofindPw(User user){
+        HashMap<String, Object> map = new HashMap<>();
+
+        String chkPw = userService.chkUserPw(user);
+
+        if(chkPw == null){
+            map.put("noId","해당 정보가 존재하지 않습니다. 다시 한번 확인 해주세요.");
+        }else{
+            map.put("hasId","비밀번호 변경");
+        }
+        return map;
+    }
+
+    @PostMapping("/modifyPw")
+    @ResponseBody
+    public String modifyPw(User user){
+        int modifyPw = userService.modifyPw(user);
+        if(modifyPw == 1){
+            return "success";
+        }else{
+            return "fail";
+        }
+
+    }
 }

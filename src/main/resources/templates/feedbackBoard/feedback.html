@@ -62,20 +62,6 @@
 
     <section class="inner-page">
         <div class="container aos-init aos-animate" data-aos="fade-up">
-<!--            <div class="row" style="margin-bottom: 20px;">-->
-<!--                                <div class="col-8">-->
-<!--                                    <div id="custom-search-input">-->
-<!--                                        <div class="input-group col-md-12">-->
-<!--                                            <input type="text" class="form-control" placeholder="내용검색" />-->
-<!--                                            <span class="input-group-btn">-->
-<!--                                                <button class="btn btn-dark" type="button">-->
-<!--                                                    <i class="bi bi-search"></i>-->
-<!--                                                </button>-->
-<!--                                            </span>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--            </div>-->
             <div class="row">
                 <table class="table">
                     <thead>
@@ -86,28 +72,16 @@
                         <th scope="col">작성일</th>
                     </tr>
                     </thead>
-                    <tbody class="table-group-divider">
-                    <tr>
-                        <th scope="row">1</th>
-                        <th scope="col"><a href="/feedback/view">제목</a></th>
-                        <th scope="col">작성자</th>
-                        <th scope="col">작성일</th>
-                    </tr>
+                    <tbody class="table-group-divider" style="text-align: center;">
+                        <tr th:each="list : ${feedbackboardList}">
+                            <td th:text="${list.boardNo}"></td>
+                            <td th:text="${list.title}" style="cursor: pointer; color: blue;" th:onclick="|location.href='@{/feedback/view(boardNo=${list.boardNo})}'|"></td>
+                            <td th:text="${list.writeId}"></td>
+                            <td th:text="${list.regdate}"></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="row">
-                <div class="container">
-                    <ul class="pagination">
-                        <li class="disabled"><a href="#">«</a></li>
-                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
-                </div>
                 <div>
                     <button type="button" style="float: right;"class="btn btn-outline-dark" onclick="location.href='/feedback/write';">글쓰기</button>
                 </div>

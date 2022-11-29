@@ -51,4 +51,18 @@ public class UserService implements UserDetailsService {
         return userMapper.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException((id)));
     }
+
+    public String chkUserId(User user) {
+        return userMapper.chkUserId(user);
+    }
+
+    public String chkUserPw(User user) {
+        return userMapper.chkUserPw(user);
+    }
+
+    public int modifyPw(User user) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(user.getPassword()));
+        return userMapper.modifyPw(user);
+    }
 }
