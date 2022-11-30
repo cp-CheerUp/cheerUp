@@ -1,51 +1,49 @@
 <!DOCTYPE html>
-<html lagn="ko"
+<html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
 
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CheerUp</title>
 
-<title>CheerUp</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
+    <!-- Favicons -->
+    <link href="/img/favicon.png" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-<meta content="" name="description">
-<meta content="" name="keywords">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
 
-<!-- Favicons -->
-
-<link href="/img/favicon.png" rel="icon">
-<link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-<!-- Vendor CSS Files -->
-<link href="/vendor/aos/aos.css" rel="stylesheet">
-<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-<link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-<link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
-<link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
 
     <th:block th:replace="fragments/config :: configFragment"></th:block>
 
 
-<!--css연결 Template Main CSS File -->
+    <!--css연결 Template Main CSS File -->
 
-<link href="/css/home/home.css" rel="stylesheet">
+    <link href="/css/home/home.css" rel="stylesheet">
 
-<!-- =======================================================
+    <!-- =======================================================
 * Template Name: FlexStart - v1.11.1
 * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 ======================================================== -->
-<style>
+    <style>
 * {
   box-sizing: border-box;
 }
@@ -107,9 +105,12 @@ footer {
   }
 }
 
-</style>
+
+
+    </style>
 
 </head>
+
 
 <body>
 
@@ -117,33 +118,30 @@ footer {
 <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="/home" class="logo d-flex align-items-center">
             <img src="/img/logo.png" alt="">
             <span>CheerUp</span>
         </a>
 
+        <!-- .navbar -->
         <nav id="navbar" class="navbar">
             <ul>
-                <!--                <li><a class="nav-link scrollto " href="#hero">Home</a></li>-->
-                <!--                <li><a class="nav-link scrollto" href="#about">About</a></li>-->
-                <!--                <li><a class="nav-link scrollto" href="#services">Services</a></li>-->
-                <li><a class="nav-link scrollto" href="#portfolio">자유게시판</a></li>
-                <li><a class="nav-link scrollto" href="#team">면접 연습</a></li>
-                <!--                <li><a href="blog.html">Blog</a></li>-->
-                <li><a class="nav-link scrollto" href="#contact">채용 후기</a></li>
-                <li><a class="nav-link scrollto" href="#about">피드백</a></li>
+
+                <li><a class="nav-link scrollto" href="/freeboard/main">자유게시판</a></li>
+                <li><a class="nav-link scrollto" href="/interview-home">면접 연습</a></li>
+                <li><a class="nav-link scrollto" href="/recruitReview/mainRecruitReview">채용 후기</a></li>
+                <li><a class="nav-link scrollto" href="/feedback/main">피드백</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
+        </nav>
 
     </div>
-</header><!-- End Header -->
-
-
-
+</header>
+<!-- End Header -->
 
 
 <main id="main">
+
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
 
@@ -151,10 +149,10 @@ footer {
 
             <header class="section-header">
                 <span style="font-size:70px;">💻</span>
-                <p>  IT 취업정보 커뮤니티 CheerUp </p>
+                <p> IT 취업정보 커뮤니티 CheerUp </p>
             </header>
 
-<!--게시판 바로가기-->
+            <!--게시판 바로가기-->
             <div class="row gy-4">
 
                 <div class="col-lg-4 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
@@ -162,7 +160,8 @@ footer {
                         <i class="ri-discuss-line icon"></i>
                         <h3>자유게시판</h3>
                         <p> IT에 관심있는 모두가 자유롭게 소통해요.</p>
-                        <a href="#" class="read-more"><span>이야기 하러가기</span> <i class="bi bi-arrow-right"></i></a>
+                        <a href="/freeboard/main" class="read-more"><span>이야기 하러가기</span> <i
+                                class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -171,7 +170,8 @@ footer {
                         <i class="ri-discuss-line icon"></i>
                         <h3>면접 연습</h3>
                         <p> 면접에 자주 나오는 질문들로 연습해볼 수 있어요.</p>
-                        <a href="#" class="read-more"><span>가상면접 보러가기</span> <i class="bi bi-arrow-right"></i></a>
+                        <a href="/interview-home" class="read-more"><span>가상면접 보러가기</span> <i
+                                class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
 
@@ -180,7 +180,8 @@ footer {
                         <i class="ri-discuss-line icon"></i>
                         <h3>채용 후기</h3>
                         <p>실시간으로 올라오는 채용 후기를 살펴보아요.</p>
-                        <a href="#" class="read-more"><span>채용 후기 어땠을까?</span> <i class="bi bi-arrow-right"></i></a>
+                        <a href="recruitReview/mainRecruitReview" class="read-more"><span>채용 후기 어땠을까?</span> <i
+                                class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -195,15 +196,15 @@ footer {
 
     <section id="calendar" class="pricing">
         <div class="container text-center">
-            <div class="row justify-content-around" >
-            <span><iframe id="pageFrame" name="pageFrame" src="http://www.jobkorea.co.kr/Starter/calendar/sub/month" width="1295px" height="1000px" scrolling="auto"></iframe></span>
+            <div class="row justify-content-around">
+                <span><iframe id="pageFrame" name="pageFrame" src="http://www.jobkorea.co.kr/Starter/calendar/sub/month"
+                              width="1295px" height="1300px" scrolling="auto"></iframe></span>
             </div>
-            </div>
+        </div>
     </section>
 
 
 </main>
-
 
 
 <!-- ======= Footer ======= -->
@@ -212,11 +213,9 @@ footer {
     <div class="footer-newsletter">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-6 text-center">
-                    <h4>Our Newsletter</h4>
-
-                    <p style="color: #000080">CheerUp에서 추천하는 취업정보를 매월 둘째 주 보내드려요!</p>
-
+                <div class="col-lg-12 text-center">
+                    <h4>CheerUp Letter</h4>
+                    <p style="color:#000080;">CheerUp에서 추천하는 취업정보를 매월 둘째 주 보내드려요!</p>
                 </div>
                 <div class="col-lg-6">
                     <form action="" method="post">
@@ -231,11 +230,14 @@ footer {
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-5 col-md-12 footer-info">
-                    <a href="index.html" class="logo d-flex align-items-center">
+                    <a href="/home" class="logo d-flex align-items-center">
                         <img src="/img/logo.png" alt="">
                         <span>CheerUp</span>
                     </a>
-                    <p style="color: #000080">고객센터: cheerup@chrp.com </p>
+
+<!--                    관리자 페이지 바로가기-->
+                   <a class="adminlink" href="/admin/boardAdmin">&#128736; Admin Page &#128736;</a>
+
                     <div class="social-links mt-3">
                         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                         <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -244,7 +246,7 @@ footer {
                     </div>
                 </div>
 
-                <!--<div class="col-lg-2 col-6 footer-links">
+                <div class="col-lg-2 col-6 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
                         <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
@@ -258,25 +260,23 @@ footer {
                 <div class="col-lg-2 col-6 footer-links">
                     <h4>Our Services</h4>
                     <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#">community</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#">interview simulation</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="#">Feedback</a></li>
                     </ul>
                 </div>
 
-                <div class="col-lg-2 col-6 footer-contact text-center text-md-start">
+                <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
                     <h4>Contact Us</h4>
-                    <p>
-                        A108 Adam Street <br>
-                        New York, NY 535022<br>
-                        United States <br><br>
-                        <strong>Phone:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
+                    <p style="color: #000080;">
+                        서울특별시 <br>
+                        강남구 테헤란로27길 8<br>
+                        다온빌딩 2층 <br><br>
+                        <strong>Phone:</strong> 02-000-0000 <br>
+                        <strong>Email:</strong> cheerup@chrp.com <br>
                     </p>
 
-                </div> -->
+                </div>
 
             </div>
         </div>
@@ -291,12 +291,13 @@ footer {
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
-            <!--Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>-->
         </div>
     </div>
-</footer><!-- End Footer -->
+</footer>
+<!-- End Footer -->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="/vendor/purecounter/purecounter_vanilla.js"></script>
@@ -311,11 +312,7 @@ footer {
 <script src="/js/main.js"></script>
 
 
-
-
-
 </body>
-
 
 
 </html>
