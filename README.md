@@ -50,7 +50,6 @@ CI | Github
    - [구체적인 내용]
    - [구체적인 내용]
    - [구체적인 내용]
-
 <br><br>
 
 - 김민지
@@ -58,7 +57,6 @@ CI | Github
    - [구체적인 내용]
    - [구체적인 내용]
    - [구체적인 내용]
-  
  <br><br>
    
 - 김윤정 
@@ -69,7 +67,6 @@ CI | Github
    - 아이디 찾기
    - 비밀번호 찾기
   - log4j 적용
-  
 <br><br>  
 
 - 이하린  
@@ -77,17 +74,14 @@ CI | Github
    - [구체적인 내용]
    - [구체적인 내용]
    - [구체적인 내용] 
- 
   <br><br>
 ------------
 ## 주요 기능
-<img width="1422" alt="채용후기게시판" src="">
-<img width="1422" alt="채용후기게시판" src="">
-<img width="1425" alt="" src="">
-<img width="1081" alt="" src="">
-<img width="704" alt="" src="">
-<img width="1425" alt="" src="">
-<img width="1224" alt="" src="">
-<img width="966" alt="" src="">
+
+#1. 채용후기 게시판 메인
+![image](https://user-images.githubusercontent.com/82187403/204689436-b10512d2-77e1-4ebd-8910-716397707b69.png)
+
+#1. 채용후기 게시글 상세보기 및 수정
+![image](https://user-images.githubusercontent.com/82187403/204689446-1248b2e7-787e-4d60-aa3e-c0aecccc4144.png)
 
 
