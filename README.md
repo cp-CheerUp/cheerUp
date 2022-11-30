@@ -78,10 +78,10 @@ CI | Github
 ------------
 ## 주요 기능
 
-#1. 채용후기 게시판 메인
+### 1. 채용후기 게시판 메인
 ![image](https://user-images.githubusercontent.com/82187403/204689436-b10512d2-77e1-4ebd-8910-716397707b69.png)
 
-#1. 채용후기 게시글 상세보기 및 수정
+### 2. 채용후기 게시글 상세보기 및 수정
 ![image](https://user-images.githubusercontent.com/82187403/204689446-1248b2e7-787e-4d60-aa3e-c0aecccc4144.png)
 
 
