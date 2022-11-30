@@ -1542,7 +1542,7 @@ section {
 .recent-blog-posts .post-box .post-img {
     overflow: hidden;
     margin: -30px -30px 15px -30px;
-    position: relative;
+    position:  relative;
 }
 
 .recent-blog-posts .post-box .post-img img {
