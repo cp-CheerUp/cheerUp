@@ -16,5 +16,7 @@ public class Interview {
     private int total;
     private int fail;
     private LocalDateTime createdAt;
+    private int response_rate;
+
 
 }
