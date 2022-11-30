@@ -9,7 +9,7 @@
     </select>
 
     <!--  게시글 상세 조회  -->
-    <select id="getFreeBoardDetail" parameterType="map" resultType="com.codepresso.cheerup.vo.FreeBoard">
+    <select id="getFreeBoardDetail" resultType="com.codepresso.cheerup.vo.FreeBoard">
         select * from freeboard where boardNo=#{boardNo}
     </select>
 
