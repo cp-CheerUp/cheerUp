@@ -105,7 +105,8 @@
             <div th:each="replyList : ${replyList}">
                 <div class="mb-3">
                     <br>
-                    <input type="text" readonly class="form-control-plaintext" name="_writeId" th:value="${replyList.writeId}">
+                    <strong><input type="text" readonly class="form-control-plaintext" name="_writeId" th:value="${replyList.writeId}"></strong>
+
                     <input type="text" readonly class="form-control-plaintext" name="_reply" th:value="${replyList.reply}">
                 </div>
                 <div th:if="${replyList.writeId == user}" style="display: contents;">
