@@ -33,7 +33,7 @@ public class InterviewService {
     }
 
     //선생님이하는대로 해보기
-    public List<Interview> multiListTest(String[] multiArray, int limitCount) {
+    public List<Interview> multiListTest(@Param("multiArray") String[] multiArray, @Param("limitCount")int limitCount) {
 
         //각각 카테고리별로 가져오기 limitCount 개씩 가져오기
         List<List<Interview>> all_question = new ArrayList<>();
@@ -118,7 +118,7 @@ public class InterviewService {
         return result;
     }
 
-    public int insertUserResponse2(String id, String interview_id, String interview_answer) {
+    public int insertUserResponse2(@Param("id") String id, @Param("interview_id")String interview_id, @Param("interview_answer")String interview_answer) {
         int result2 = interviewMapper.insertUserResponse2(id,interview_id,interview_answer);
 
         return result2;

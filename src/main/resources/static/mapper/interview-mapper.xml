@@ -5,10 +5,10 @@
 
 
     <!-- (1) 사용자가 선택한 카테고리의 정보만 가져오기 -->
-<!--    <select id="getSelectedList" parameterType="com.codepresso.cheerup.vo.Interview">-->
-<!--        SELECT (*) FROM interview-->
-<!--        WHERE category = #{category}-->
-<!--    </select>-->
+    <!--    <select id="getSelectedList" parameterType="com.codepresso.cheerup.vo.Interview">-->
+    <!--        SELECT (*) FROM interview-->
+    <!--        WHERE category = #{category}-->
+    <!--    </select>-->
 
     <select id="getSingleList" parameterType="String" resultType="com.codepresso.cheerup.vo.Interview">
         SELECT * , CAST((fail/total)*100 as signed) as response_rate  FROM Interview
@@ -93,15 +93,15 @@
         WHERE interview_id = #{id_array}
     </update>
 
-<!--    <select id="getResultList"  resultType="com.codepresso.cheerup.vo.Interview_response">-->
-<!--        select r.id, r.interview_id, i.category, i.question, r.interview_answer from Interview_response r-->
-<!--        inner join interview i-->
-<!--        on i.interview_id= r.interview_id-->
-<!--        where id = #{id} and r.interview_id in-->
-<!--        <foreach collection="array" item="id_array" open="(" close=")" separator=",">-->
-<!--            #{id_array}-->
-<!--        </foreach>-->
-<!--    </select>-->
+    <!--    <select id="getResultList"  resultType="com.codepresso.cheerup.vo.Interview_response">-->
+    <!--        select r.id, r.interview_id, i.category, i.question, r.interview_answer from Interview_response r-->
+    <!--        inner join interview i-->
+    <!--        on i.interview_id= r.interview_id-->
+    <!--        where id = #{id} and r.interview_id in-->
+    <!--        <foreach collection="array" item="id_array" open="(" close=")" separator=",">-->
+    <!--            #{id_array}-->
+    <!--        </foreach>-->
+    <!--    </select>-->
 
     <select id="getResponseList" resultType="com.codepresso.cheerup.vo.Interview">
         select category, question from interview where interview_id in
@@ -133,9 +133,9 @@
         WHERE interview_id = #{failId}
     </update>
 
-<!--    <select id="getRowCount">-->
-<!--        select count(*)  from Interview_response;-->
-<!--    </select>-->
+    <!--    <select id="getRowCount">-->
+    <!--        select count(*)  from Interview_response;-->
+    <!--    </select>-->
 
     <select id="getPgCount" parameterType="String" resultType="int">
         select COUNT(i.category) from Interview i
