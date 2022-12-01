@@ -40,13 +40,13 @@ h6 {
 # Sections
 --------------------------------------------------------------*/
 section {
-    padding: 60px 0;
+    padding: 40px 0;
     overflow: hidden;
 }
 
 .section-header {
     text-align: center;
-    padding-bottom: 40px;
+    padding-bottom: 60px;
 }
 
 .section-header h2 {
@@ -1542,7 +1542,7 @@ section {
 .recent-blog-posts .post-box .post-img {
     overflow: hidden;
     margin: -30px -30px 15px -30px;
-    position: relative;
+    position:  relative;
 }
 
 .recent-blog-posts .post-box .post-img img {
@@ -2405,8 +2405,4 @@ section {
     font-size: 13px;
     color: #012970;
 }
-
-
-
-
 

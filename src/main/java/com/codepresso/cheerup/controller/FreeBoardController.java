@@ -1,8 +1,8 @@
 package com.codepresso.cheerup.controller;
 
+import com.codepresso.cheerup.service.FreeBoardReplyService;
 import com.codepresso.cheerup.service.FreeBoardService;
-import com.codepresso.cheerup.vo.FreeBoard;
-import com.codepresso.cheerup.vo.User;
+import com.codepresso.cheerup.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +22,7 @@ import java.util.List;
 @RequestMapping(path="freeboard")
 public class FreeBoardController {
     private final FreeBoardService freeBoardService;
+    private final FreeBoardReplyService freeBoardReplyService;
 
     @GetMapping("/main")
     public String freeboard(Model model, FreeBoard freeBoard, Authentication authentication) {
@@ -44,7 +45,10 @@ public class FreeBoardController {
 
         FreeBoard freeBoardDetail = freeBoardService.getFreeBoardDetail(boardNo);
 
+        List<FreeBoardReply> replyList = freeBoardReplyService.getAllReplyList(boardNo);
+
         model.addAttribute("freeboardDetail", freeBoardDetail);
+        model.addAttribute("replyList", replyList);
         model.addAttribute("user", user);
         return "freeBoard/freeboardView";
     }
@@ -83,5 +87,55 @@ public class FreeBoardController {
         } else {
             return "삭제가 되지 않았습니다.";
         }
+    }
+
+    @PostMapping("/view/insertReply")
+    public String enrollReply(@RequestParam("re-boardNo") int boardNo, @RequestParam("re-writeId") String writeId, @RequestParam("re-content") String content, Model model, Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String user = ((User) userDetails).getId();
+        List<FreeBoardReply> replyList;
+
+
+        FreeBoardReply reply = new FreeBoardReply();
+        reply.setBoardNo(boardNo);
+        reply.setWriteId(writeId);
+        reply.setReply(content);
+
+        int result = freeBoardReplyService.insertReply(reply);
+        if(result == 1){
+            replyList = freeBoardReplyService.getAllReplyList(boardNo);
+        } else{
+            return "정상적으로 등록되지 않았습니다.";
+        }
+
+        FreeBoard freeBoardDetail = freeBoardService.getFreeBoardDetail(boardNo);
+
+        model.addAttribute("freeboardDetail", freeBoardDetail);
+        model.addAttribute("replyList", replyList);
+        model.addAttribute("user", user);
+        return "freeBoard/freeboardView";
+    }
+
+    //주소매핑
+    @GetMapping("/view/deleteReply")
+    public String deleteReply(Model model, @RequestParam int boardNo, @RequestParam int replyNo, Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String user = ((User) userDetails).getId();
+        List<FreeBoardReply> replyList;
+
+        int result = freeBoardReplyService.deleteReply(replyNo);
+
+        if (result == 1){
+            replyList = freeBoardReplyService.getAllReplyList(boardNo);
+        } else{
+            return "정상적으로 삭제가 되지 않았습니다.";
+        }
+
+        FreeBoard freeBoardDetail = freeBoardService.getFreeBoardDetail(boardNo);
+
+        model.addAttribute("freeboardDetail", freeBoardDetail);
+        model.addAttribute("replyList", replyList);
+        model.addAttribute("user", user);
+        return "freeBoard/freeboardView";
     }
 }

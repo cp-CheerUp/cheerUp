@@ -1,7 +1,9 @@
 package com.codepresso.cheerup.controller;
 
+import com.codepresso.cheerup.service.FeedBackBoardReplyService;
 import com.codepresso.cheerup.service.FeedBackBoardService;
 import com.codepresso.cheerup.vo.FeedBackBoard;
+import com.codepresso.cheerup.vo.FeedBackBoardReply;
 import com.codepresso.cheerup.vo.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -22,6 +24,7 @@ import java.util.List;
 @RequestMapping(path="feedback")
 public class FeedbackBoardController {
     private final FeedBackBoardService feedBackBoardService;
+    private final FeedBackBoardReplyService feedBackBoardReplyService;
 
     @GetMapping("/main")
     public String feedbackboard(Model model, FeedBackBoard feedBackBoard, Authentication authentication) {
@@ -44,7 +47,10 @@ public class FeedbackBoardController {
 
         FeedBackBoard feedBackBoardDetail = feedBackBoardService.getFeedBackBoardDetail(boardNo);
 
+        List<FeedBackBoardReply> replyList = feedBackBoardReplyService.getAllReplyList(boardNo);
+
         model.addAttribute("feedbackboardDetail", feedBackBoardDetail);
+        model.addAttribute("replyList", replyList);
         model.addAttribute("user", user);
         return "feedbackBoard/feedbackView";
     }
@@ -83,5 +89,56 @@ public class FeedbackBoardController {
         } else {
             return "삭제가 되지 않았습니다.";
         }
+    }
+
+    //주소매핑
+    @PostMapping("/view/insertReply")
+    public String enrollReply(@RequestParam("re-boardNo") int boardNo,@RequestParam("re-writeId") String writeId, @RequestParam("re-content") String content, Model model,Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String user = ((User) userDetails).getId();
+        List<FeedBackBoardReply> replyList;
+
+
+        FeedBackBoardReply reply = new FeedBackBoardReply();
+        reply.setBoardNo(boardNo);
+        reply.setWriteId(writeId);
+        reply.setReply(content);
+
+        int result = feedBackBoardReplyService.insertReply(reply);
+        if(result == 1){
+            replyList = feedBackBoardReplyService.getAllReplyList(boardNo);
+        } else{
+            return "정상적으로 등록되지 않았습니다.";
+        }
+
+        FeedBackBoard feedBackBoardDetail = feedBackBoardService.getFeedBackBoardDetail(boardNo);
+
+        model.addAttribute("feedbackboardDetail", feedBackBoardDetail);
+        model.addAttribute("replyList", replyList);
+        model.addAttribute("user", user);
+        return "feedbackBoard/feedbackView";
+    }
+
+    //주소매핑
+    @GetMapping("/view/deleteReply")
+    public String deleteReply(Model model, @RequestParam int boardNo, @RequestParam int replyNo, Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String user = ((User) userDetails).getId();
+        List<FeedBackBoardReply> replyList;
+
+        int result = feedBackBoardReplyService.deleteReply(replyNo);
+
+        if (result == 1){
+            replyList = feedBackBoardReplyService.getAllReplyList(boardNo);
+        } else{
+           return "정상적으로 삭제가 되지 않았습니다.";
+        }
+
+        FeedBackBoard feedBackBoardDetail = feedBackBoardService.getFeedBackBoardDetail(boardNo);
+
+        model.addAttribute("feedbackboardDetail", feedBackBoardDetail);
+        model.addAttribute("replyList", replyList);
+        model.addAttribute("user", user);
+        return "feedbackBoard/feedbackView";
     }
 }

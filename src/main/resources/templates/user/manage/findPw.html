@@ -47,51 +47,38 @@
   </style>
 
   <script type="text/javascript">
+    $(function (){
+      $("#password").keyup(function(){
+        var password = document.getElementById("password");
+        var passwordCheck = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
 
+        if (!passwordCheck.test(password.value)) {
+          $("#alertMsg").text("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
+        }else{
+          $("#alertMsg").text("");
+        }
+      })
+
+      $("#password2").keyup(function() {
+        var password = document.getElementById("password");
+        var password2 = document.getElementById("password2");
+
+        if (password.value !== password2.value) {
+          $("#alertMsg").text("비밀번호가 일치하지 않습니다.");
+          password2.focus();
+        }else{
+          $("#alertMsg").text("");
+          $("#btnChangePw").show();
+        }
+      })
+    })
     function form_check(){
       var id = document.getElementById("id");
-      var password = document.getElementById("password");
-      var password2 = document.getElementById("password2");
-      var name = document.getElementById("name");
       var phone = document.getElementById("phone");
-      var education = document.getElementById("education");
-      var isMajor = document.getElementById("isMajor");
 
       if (id.value == "") {
-        alert("아이디를 입력하세요.");
-        id.focus(); //focus(): 커서가 깜빡이는 현상, blur(): 커서가 사라지는 현상
-        return false;
-      };
-
-      var passwordCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-
-      if (password.value == "") {
-        alert("비밀번호를 입력하세요.");
-        password.focus();
-        return false;
-      };
-
-      if (!passwordCheck.test(password.value)) {
-        alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
-        password.focus();
-        return false;
-      };
-
-      if (!passwordCheck.test(password2.value)) {
-        alert("비밀번호 재확인 항목을 입력해주세요.");
-        password.focus();
-        return false;
-      };
-
-      if (password.value !== password2.value) {
-        alert("비밀번호가 일치하지 않습니다.");
-        password2.focus();
-        return false;
-      };
-
-      if (name.value == "") {
         alert("이름을 입력하세요.");
-        name.focus();
+        id.focus();
         return false;
       };
 
@@ -109,21 +96,55 @@
         return false;
       };
 
-      if(isMajor.value == ""){
-        alert("it 전공 여부를 선택해주세요.");
-        isMajor.focus();
-        return false;
-      };
+      $.ajax({
+        url:"gofindPw",
+        type: "POST",
+        data: $("#findPw_form").serialize(),
+        dataType: 'JSON', // success 시 받아올 데이터 형식
+        success: function(result) {
+          console.log(result);
+          $("#btnGoLogin").hide();
+          $(".modal-text").html("");
+          if(result.hasOwnProperty("hasId")){
+            $("#modal_changePw").modal('show');
+          }else{
+            $(".modal-text").html(result.noId);
+            $("#modal_alert").modal('show');
+          }
+        }
+      });
+    }
 
-      if(education.value == ""){
-        alert("최종 학력을 선택해주세요.");
-        education.focus();
-        return false;
-      };
+    function changePwd(){
+      var password = document.getElementById("password");
+      var password2 = document.getElementById("password2");
+      var id = document.getElementById("id");
 
-      alert("유효성검사 완료!");
-
-      document.register_form.submit()
+      $("#alertMsg").text("");
+      $.ajax({
+        url:"modifyPw",
+        type: "POST",
+        data: {"id" : id.value, "password" : password.value},
+        dataType: 'text', // success 시 받아올 데이터 형식
+        success: function(result) {
+          $("#alertMsg").text("");
+          $("#password").val("");
+          $("#password2").val("");
+          console.log(result);
+          $(".modal-text").html("");
+          if(result = "success"){
+            $("#btnGoLogin").show();
+            $(".modal-text").html("비밀번호 변경 완료");
+            $("#modal_alert").modal('show');
+            $("#btnChangePw").hide();
+          }else{
+            $("#btnGoLogin").hide();
+            $(".modal-text").html("비밀번호 변경 실패! 다시 확인해주세요.");
+            $("#modal_alert").modal('show');
+            $("#btnChangePw").hide();
+          }
+        }
+      });
 
     }
   </script>
@@ -150,8 +171,7 @@
           <article class="card-body mx-auto" style="max-width: 400px;">
             <h4 class="card-title  text-center"><b>비밀번호 찾기</b></h4>
             <hr>
-            <form id="register_form" name="register_form" method="post" th:action="@{/register}" accept-charset="UTF-8" >
-
+            <form id="findPw_form" name="findPw_form" method="post" accept-charset="UTF-8" >
               <div class="form-group input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text"> <i class="fa fa-user"></i> </span>
@@ -169,7 +189,7 @@
               <div class="form-group">
                 <button type="button" onclick="form_check();" class="btn btn-primary">찾기</button>
               </div> <!-- form-group// -->
-              <p class="text-center"> ?이미 가입하셨다면  <a href="">로그인</a> </p>
+              <p class="text-center"><a href="/login">로그인</a> </p>
             </form>
           </article>
         </div> <!-- card.// -->
@@ -182,6 +202,53 @@
 
 </main>
 <!-- End #main -->
+<!-- Modal -->
+<div class="modal fade" id="modal_alert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">알림</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body modal-text"></div>
+      <div class="modal-footer">
+        <button type="button" onclick="location.href='/login';" id="btnGoLogin" class="btn btn-success" style="display: none" data-bs-dismiss="modal">로그인 하러가기</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal_changePw" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal_changePwLabel">비밀번호 변경</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <span id="alertMsg" style="color: red;"></span>
+        <form id="changePw" name="changePw" method="post">
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+            </div>
+            <input type="password" class="form-control" id="password" name="password"  placeholder="비밀번호(영문+숫자+특수기호)">
+          </div> <!-- form-group// -->
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fas fa-check"></i> </span>
+            </div>
+            <input class="form-control" id="password2" name="password2" placeholder="비밀번호 재확인" type="password">
+          </div> <!-- form-group// -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnChangePw" style="display: none;" onclick="changePwd(); return false;" class="btn btn-secondary" data-bs-dismiss="modal">변경</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

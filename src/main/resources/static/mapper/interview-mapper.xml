@@ -11,7 +11,7 @@
 <!--    </select>-->
 
     <select id="getSingleList" parameterType="String" resultType="com.codepresso.cheerup.vo.Interview">
-        SELECT * FROM Interview
+        SELECT * , CAST((fail/total)*100 as signed) as response_rate  FROM Interview
         WHERE category = #{category_origin} order by rand() limit 10
     </select>
 
@@ -25,53 +25,52 @@
 
 
     <select id="getProgrammingList"  resultType="com.codepresso.cheerup.vo.Interview">
-        SELECT * FROM Interview
+        SELECT * , CAST((fail/total)*100 as signed) as response_rate  FROM Interview
         WHERE category = #{category} order by rand()
         limit #{limitCount}
     </select>
 
     <select id="getData_structureList"  resultType="com.codepresso.cheerup.vo.Interview">
-        SELECT * FROM Interview
+        SELECT * , CAST((fail/total)*100 as signed) as response_rate  FROM Interview
         WHERE category = #{category} order by rand()
         limit #{limitCount}
     </select>
 
     <select id="getAlgorithmList"  resultType="com.codepresso.cheerup.vo.Interview">
-        SELECT * FROM Interview
+        SELECT * , CAST((fail/total)*100 as signed) as response_rate  FROM Interview
         WHERE category = #{category} order by rand()
         limit #{limitCount}
     </select>
 
     <select id="getDatabaseList"  resultType="com.codepresso.cheerup.vo.Interview">
-        SELECT * FROM Interview
+        SELECT * , CAST((fail/total)*100 as signed) as response_rate FROM Interview
         WHERE category = #{category} order by rand()
         limit #{limitCount}
     </select>
 
     <select id="getNetworkList"  resultType="com.codepresso.cheerup.vo.Interview">
-        SELECT * FROM Interview
+        SELECT * , CAST((fail/total)*100 as signed) as response_rate  FROM Interview
         WHERE category = #{category} order by rand()
         limit #{limitCount}
     </select>
 
     <select id="getOsList"  resultType="com.codepresso.cheerup.vo.Interview">
-        SELECT * FROM Interview
+        SELECT * , CAST((fail/total)*100 as signed) as response_rate FROM Interview
         WHERE category = #{category} order by rand()
         limit #{limitCount}
     </select>
 
     <select id="getPersonalityList"  resultType="com.codepresso.cheerup.vo.Interview">
-        SELECT * FROM Interview
+        SELECT * , CAST((fail/total)*100 as signed) as response_rate  FROM Interview
         WHERE category = #{category} order by rand()
         limit #{limitCount}
     </select>
 
     <select id="getSurpriseList"  resultType="com.codepresso.cheerup.vo.Interview">
-        SELECT * FROM Interview
+        SELECT * , CAST((fail/total)*100 as signed) as response_rate  FROM Interview
         WHERE category = #{category} order by rand()
         limit #{limitCount}
     </select>
-
 
     <insert id="insertUserResponse" parameterType="map">
         INSERT INTO Interview_response
@@ -83,6 +82,128 @@
             #{answer_array})
         </foreach>
     </insert>
+
+    <insert id="insertUserResponse2" >
+        INSERT INTO Interview_response
+        (id, interview_id, interview_answer) values( #{id}, #{interview_id}, #{interview_answer})
+    </insert>
+
+    <update id="updateTotalCount" >
+        UPDATE Interview set total = total + 1
+        WHERE interview_id = #{id_array}
+    </update>
+
+<!--    <select id="getResultList"  resultType="com.codepresso.cheerup.vo.Interview_response">-->
+<!--        select r.id, r.interview_id, i.category, i.question, r.interview_answer from Interview_response r-->
+<!--        inner join interview i-->
+<!--        on i.interview_id= r.interview_id-->
+<!--        where id = #{id} and r.interview_id in-->
+<!--        <foreach collection="array" item="id_array" open="(" close=")" separator=",">-->
+<!--            #{id_array}-->
+<!--        </foreach>-->
+<!--    </select>-->
+
+    <select id="getResponseList" resultType="com.codepresso.cheerup.vo.Interview">
+        select category, question from interview where interview_id in
+        <foreach collection="array" item="id_array" open="(" close=")" separator=",">
+            #{id_array}
+        </foreach>
+    </select>
+
+    <update id="insertFailCount" >
+        UPDATE Interview set fail = fail + 1
+        WHERE interview_id  in
+        <foreach collection="array" item="failId" open="(" close=")" separator=",">
+            #{failId}
+        </foreach>
+    </update>
+
+
+    <update id="updateFailCounting" >
+        UPDATE Interview set fail = fail + 1
+        WHERE interview_id  in
+        <foreach collection="list" item="id_list" open="(" close=")" separator=",">
+            #{id_list}
+        </foreach>
+    </update>
+
+
+    <update id="updateFailCounting2" >
+        UPDATE Interview set fail = fail + 1
+        WHERE interview_id = #{failId}
+    </update>
+
+<!--    <select id="getRowCount">-->
+<!--        select count(*)  from Interview_response;-->
+<!--    </select>-->
+
+    <select id="getPgCount" parameterType="String" resultType="int">
+        select COUNT(i.category) from Interview i
+        inner join Interview_response r
+        on i.interview_id= r.interview_id
+        where id = #{id} and category='programming';
+    </select>
+
+
+    <select id="getDsCount" parameterType="String" resultType="int">
+        select COUNT(i.category) from Interview i
+        inner join Interview_response r
+        on i.interview_id= r.interview_id
+        where id = #{id} and category='data_structure';
+    </select>
+
+    <select id="getAgCount" parameterType="String" resultType="int">
+        select COUNT(i.category) from Interview i
+        inner join Interview_response r
+        on i.interview_id= r.interview_id
+        where id = #{id} and category='algorithm';
+    </select>
+
+    <select id="getDbCount" parameterType="String" resultType="int">
+        select COUNT(i.category) from Interview i
+        inner join Interview_response r
+        on i.interview_id= r.interview_id
+        where id = #{id} and category='database';
+    </select>
+
+    <select id="getNwCount" parameterType="String" resultType="int">
+        select COUNT(i.category) from Interview i
+        inner join Interview_response r
+        on i.interview_id= r.interview_id
+        where id = #{id} and category='network';
+    </select>
+
+    <select id="getOsCount" parameterType="String" resultType="int">
+        select COUNT(i.category) from Interview i
+        inner join Interview_response r
+        on i.interview_id= r.interview_id
+        where id = #{id} and category='os';
+    </select>
+
+    <select id="getPsCount" parameterType="String" resultType="int">
+        select COUNT(i.category) from Interview i
+        inner join Interview_response r
+        on i.interview_id= r.interview_id
+        where id = #{id} and category='personality';
+    </select>
+
+
+    <select id="getSpCount" parameterType="String" resultType="int">
+        select COUNT(i.category) from Interview i
+        inner join Interview_response r
+        on i.interview_id= r.interview_id
+        where id = #{id} and category='surprise';
+    </select>
+
+
+    <select id="getFailList" parameterType="String" resultType="com.codepresso.cheerup.vo.Interview">
+        select i.interview_id,i.category, i.question from Interview i
+        inner join Interview_response r
+        on i.interview_id= r.interview_id
+        where id = #{id} and r.interview_answer='X'
+        order by rand()
+        limit 12
+    </select>
 
 
 

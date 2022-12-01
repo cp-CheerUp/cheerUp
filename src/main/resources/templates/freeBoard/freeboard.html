@@ -21,30 +21,6 @@
 <!--header config layout link-->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
-<!-- ======= Header ======= -->
-<header id="header" class="header fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-        <a href="index.html" class="logo d-flex align-items-center">
-            <img src="/img/logo.png" alt="">
-            <span>CheerUp</span>
-        </a>
-
-        <!-- nav -->
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li><a class="nav-link scrollto" href="/freeboard/main">자유게시판</a></li>
-                <li><a class="nav-link scrollto" href="#team">면접 연습</a></li>
-                <li><a class="nav-link scrollto" href="#contact">채용 후기</a></li>
-                <li><a class="nav-link scrollto" href="feedback">피드백</a></li>
-            </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav>
-
-    </div>
-</header>
-<!-- End Header -->
-
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -64,12 +40,12 @@
         <div class="container aos-init aos-animate" data-aos="fade-up">
             <div class="row" style="margin-bottom: 20px;">
                 <div class="col-4">
-                    <select style="height: 44px;width: 250px;margin: 0;" name="category" class="form-select" aria-label="Default select example">
-                        <option th:selected="${searchCategory == null}">카테고리</option>
-                        <option th:selected="${searchCategory}">일상</option>
-                        <option th:selected="${searchCategory}">자료</option>
-                        <option th:selected="${searchCategory}">기타</option>
-                    </select>
+<!--                    <select style="height: 44px;width: 250px;margin: 0;" name="category" class="form-select" aria-label="Default select example">-->
+<!--                        <option th:selected="${searchCategory == null}">카테고리</option>-->
+<!--                        <option th:selected="${searchCategory}">일상</option>-->
+<!--                        <option th:selected="${searchCategory}">자료</option>-->
+<!--                        <option th:selected="${searchCategory}">기타</option>-->
+<!--                    </select>-->
 <!--                    <select style="height: 44px;" class="form-select" aria-label="Default select example">-->
 <!--                        <option selected>카테고리</option>-->
 <!--                        <option value="">일상</option>-->
@@ -92,7 +68,7 @@
                         <tr th:each="list : ${freeboardList}">
                             <td th:text="${list.boardNo}"></td>
                             <td th:text="${list.category}"></td>
-                            <td th:text="${list.title}" style="cursor: pointer;" th:onclick="|location.href='@{/freeboard/view(boardNo=${list.boardNo})}'|"></td>
+                            <td th:text="${list.title}" style="cursor: pointer; color: blue;" th:onclick="|location.href='@{/freeboard/view(boardNo=${list.boardNo})}'|"></td>
                             <td th:text="${list.writeId}"></td>
                             <td th:text="${list.regdate}"></td>
                         </tr>
@@ -100,17 +76,6 @@
                 </table>
             </div>
             <div class="row">
-<!--                <div class="container">-->
-<!--                    <ul class="pagination">-->
-<!--                        <li class="disabled"><a href="#">«</a></li>-->
-<!--                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>-->
-<!--                        <li><a href="#">2</a></li>-->
-<!--                        <li><a href="#">3</a></li>-->
-<!--                        <li><a href="#">4</a></li>-->
-<!--                        <li><a href="#">5</a></li>-->
-<!--                        <li><a href="#">»</a></li>-->
-<!--                    </ul>-->
-<!--                </div>-->
                 <div>
                     <button type="button" style="float: right;"class="btn btn-outline-dark" onclick="location.href='/freeboard/write';">글쓰기</button>
                 </div>
