@@ -126,7 +126,9 @@ footer {
         <!-- .navbar -->
         <nav id="navbar" class="navbar">
             <ul>
-
+                <li><a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a></li>
+                <li><a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a></li>
+                <li><a class="nav-link" th:href="@{/signup}">회원가입</a>
                 <li><a class="nav-link scrollto" href="/freeboard/main">자유게시판</a></li>
                 <li><a class="nav-link scrollto" href="/interview-home">면접 연습</a></li>
                 <li><a class="nav-link scrollto" href="/recruitReview/mainRecruitReview">채용 후기</a></li>
@@ -147,8 +149,8 @@ footer {
 
         <div class="container aos-init aos-animate" data-aos="fade-up">
 
-            <header class="section-header">
-                <span style="font-size:70px;">💻</span>
+            <header class="section-header" style="padding-top:10%;">
+                <span style="font-size:70px;" >💻</span>
                 <p> IT 취업정보 커뮤니티 CheerUp </p>
             </header>
 

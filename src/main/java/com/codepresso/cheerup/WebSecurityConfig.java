@@ -50,14 +50,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests() // 6
                 .antMatchers("/","/login","/findId","/findPw","/gofindId", "/gofindPw", "/modifyPw","/signup", "/user","/register","/loginCheck","/home","/interview","/interview-home","/interview-result").permitAll() // 누구나 접근 허용
-                .antMatchers().hasRole("USER") // USER, ADMIN만 접근 가능
+                .antMatchers("/interview-home" ,"/interview", "/interviewing_f", "/interview-result", "interview_result_f" ,"/interview").hasRole("USER") // USER, ADMIN만 접근 가능
                 .antMatchers("/admin").hasRole("ADMIN") // ADMIN만 접근 가능
                 .anyRequest().authenticated() // 나머지 요청들은 권한의 종류에 상관 없이 권한이 있어야 접근 가능
                 .and()
                 .formLogin() // 7
                 .loginPage("/login") // 로그인 페이지 링크
                 .loginProcessingUrl("/dologin") // modify - login process  page
-                .defaultSuccessUrl("/") // 로그인 성공 후 리다이렉트 주소
+                .defaultSuccessUrl("/home") // 로그인 성공 후 리다이렉트 주소
                 .failureHandler(customFailureHandler) // 로그인 실패 핸들러
                 .and()
                 .logout() // 8
