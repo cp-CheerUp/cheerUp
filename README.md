@@ -9,7 +9,9 @@
 
 ------------
 - 링크<br>
-  + [notion](https://www.notion.so/CodePresso-3a8f5bd6852a4c5f81f68435e515cdf1)<br>
+  + [Notion](https://www.notion.so/CodePresso-3a8f5bd6852a4c5f81f68435e515cdf1)<br>
+  + [PPT]()<br>
+  + [시연 영상](https://youtu.be/q7x1KYRS61A)<br>
 
 ------------
 ## Contetns
@@ -59,7 +61,6 @@ CI | Github
   - 면접 시뮬레이션
     - 프로그래밍, 자료구조, 네트워크, 운영체제, 데이터베이스, 인성, 돌발질문, 알고리즘 총 8개의 카테고리의 
       100개 이상의 질문들로 면접 시뮬레이션 진행 및 무응답 질문들 저장 관리
-
  <br><br>
    
 - 김윤정 
