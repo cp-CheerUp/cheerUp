@@ -10,7 +10,7 @@
 ------------
 - 링크<br>
   + [Notion](https://www.notion.so/CodePresso-3a8f5bd6852a4c5f81f68435e515cdf1)<br>
-  + [PPT]()<br>
+  + [PPT](https://github.com/cp-CheerUp/cheerUp/files/10183422/B.2._Cheer.Up.pptx)<br>
   + [시연 영상](https://youtu.be/q7x1KYRS61A)<br>
 
 ------------
@@ -82,13 +82,3 @@ CI | Github
     - 관리자 화면 
     - 글 삭제페이지
   <br><br>
-------------
-## 주요 기능
-
-### 1. 채용후기 게시판 메인
-![image](https://user-images.githubusercontent.com/82187403/204689436-b10512d2-77e1-4ebd-8910-716397707b69.png)
-
-### 2. 채용후기 게시글 상세보기 및 수정
-![image](https://user-images.githubusercontent.com/82187403/204689446-1248b2e7-787e-4d60-aa3e-c0aecccc4144.png)
-
-
